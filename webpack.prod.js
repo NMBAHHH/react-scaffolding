@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackBase = require('./webpack.base.conf');
 
 module.exports = {
+    // 配置源码显示方式
     devtool: 'hidden-source-map',
     mode: 'production',
     entry: ['./src/index.jsx'],
@@ -15,54 +16,12 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: './',
     },
-    // resolve: {
-    //     extensions: ['.js', '.jsx', '.css', '.less'],
-    // },
     resolve: webpackBase.resolve,
-    // module: {
-    //     rules: [
-    //         {
-    //             test: /\.js|jsx$/,
-    //             exclude: /(node_modules)/,
-    //             loader: 'babel-loader',
-    //         },
-    //         {
-    //             test: /\.css$/,
-    //             use: [
-    //                 MiniCssExtractPlugin.loader,
-    //                 'css-loader',
-    //             ],
-    //         },
-    //         {
-    //             test: /\.less$/,
-    //             use: [
-    //                 'style-loader',
-    //                 {
-    //                     loader: 'css-loader',
-    //                     options: {
-    //                         importLoaders: 1,
-    //                     },
-    //                 },
-    //                 'less-loader',
-    //             ],
-    //         },
-    //         {
-    //             test: /\.(png|svg|jpg|gif|jpeg)$/,
-    //             use: [
-    //                 'file-loader',
-    //             ],
-    //         },
-    //         {
-    //             test: /\.(woff|woff2|eot|ttf|otf)$/,
-    //             use: [
-    //                 'file-loader',
-    //             ],
-    //         },
-    //     ],
-    // },
     module: webpackBase.module,
     plugins: [
+        // 每次打包前，先清理dist包
         new CleanWebpackPlugin(['dist']),
+        // 配置入口页面
         new HtmlWebpackPlugin({
             title: 'sight',
             template: 'public/index.html',
@@ -77,11 +36,12 @@ module.exports = {
             minifyCSS: true,
             minifyURLs: true,
         }),
-        // webpackBase.HtmlWebpackPlugin,
+        // 压缩css
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css',
             chunkFilename: '[id].css',
         }),
+        // 压缩js
         new UglifyJSPlugin({
             test: /(\.jsx|\.js)$/,
             extractComments: true,

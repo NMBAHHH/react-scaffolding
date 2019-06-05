@@ -1,12 +1,8 @@
-import {
-    combineReducers,
-} from 'redux';
-
 const initialState = {
     card: {},
 };
 
-const homeRedu = (state = initialState, action) => {
+const home = (state = initialState, action) => {
     switch (action.type) {
         case 'GET_CARD':
             return Object.assign({}, state, {
@@ -16,8 +12,4 @@ const homeRedu = (state = initialState, action) => {
             return state;
     }
 };
-/* const reducers = combineReducers({
-  homeRedu
-});
-export default reducers; */
-export default homeRedu;
+export default home;

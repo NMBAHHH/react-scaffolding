@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackBase = require('./webpack.base.conf');
 
 module.exports = {
+    // 配置源码显示方式
     devtool: 'source-map',
     mode: 'development',
     entry: ['./src/index.jsx', 'whatwg-fetch'],
@@ -29,6 +30,7 @@ module.exports = {
     //     },
     // },
     plugins: [
+        // 配置入口页面
         new HtmlWebpackPlugin({
             title: 'sight',
             template: 'public/index.html',

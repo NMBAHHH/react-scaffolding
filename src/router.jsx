@@ -1,4 +1,4 @@
-// 路由配置页面
+// 路由配置文件
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Home from './pages/Home/index';
