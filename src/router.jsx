@@ -1,11 +1,17 @@
+// 路由配置页面
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Home from './pages/Home/index';
+import About from './pages/About/index';
 
 const routes = [
     {
         path: '/',
         component: Home,
+    },
+    {
+        path: '/about',
+        component: About,
     },
 ];
 

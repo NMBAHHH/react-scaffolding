@@ -1,79 +1,33 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpackBase = require('./webpack.base.conf');
 
 module.exports = {
     devtool: 'source-map',
     mode: 'development',
     entry: ['./src/index.jsx', 'whatwg-fetch'],
-    output: {
-        filename: '[name].js',
-        hashDigestLength: 7,
-        path: path.resolve(__dirname, 'build'),
-    },
-    resolve: {
-        extensions: ['.js', '.jsx', '.css', '.less'],
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js|jsx$/,
-                exclude: /(node_modules)/,
-                loader: 'babel-loader',
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                ],
-            },
-            {
-                test: /\.less$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                        },
-                    },
-                    'less-loader',
-                ],
-            },
-            {
-                test: /\.(png|svg|jpg|gif|jpeg)$/,
-                use: [
-                    'file-loader',
-                ],
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    'file-loader',
-                ],
-            },
-        ],
-    },
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    test: /node_modules/,
-                    chunks: 'initial',
-                    name: 'common/vendor',
-                    priority: 10,
-                },
-                utils: {
-                    test: /\.js$/,
-                    chunks: 'initial',
-                    name: 'common/utils',
-                    minSize: 0,
-                },
-            },
-        },
-    },
+    resolve: webpackBase.resolve,
+    module: webpackBase.module,
+    // optimization: {
+    //     splitChunks: {
+    //         cacheGroups: {
+    //             vendor: {
+    //                 test: /node_modules/,
+    //                 chunks: 'initial',
+    //                 name: 'common/vendor',
+    //                 priority: 10,
+    //             },
+    //             utils: {
+    //                 test: /\.js$/,
+    //                 chunks: 'initial',
+    //                 name: 'common/utils',
+    //                 minSize: 0,
+    //             },
+    //         },
+    //     },
+    // },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'sight',
@@ -89,6 +43,7 @@ module.exports = {
             minifyCSS: true,
             minifyURLs: true,
         }),
+        // webpackBase.HtmlWebpackPlugin,
         new MiniCssExtractPlugin({
             filename: '[name].css',
             chunkFilename: '[id].css',
@@ -96,10 +51,6 @@ module.exports = {
         new webpack.NamedModulesPlugin(),
         // new webpack.HotModuleReplacementPlugin()
     ],
-    devServer: {
-        hot: false,
-        historyApiFallback: true,
-        // contentBase: path.resolve(__dirname,'src/index.js'),
-        compress: true,
-    },
+    devServer: webpackBase.devServer,
+    externals: webpackBase.externals
 };

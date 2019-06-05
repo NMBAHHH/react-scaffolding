@@ -15,7 +15,7 @@ class Index extends Component {
     render() {
         return (
             <section>
-                <Button type="primary">Primary</Button>
+                <Button type="primary">Primary123</Button>
             </section>
         );
     }
