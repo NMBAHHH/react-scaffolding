@@ -1,15 +1,24 @@
+import { handleActions } from 'redux-actions';
+
 const initialState = {
-    card: {},
+    count: 0 
 };
 
-const home = (state = initialState, action) => {
-    switch (action.type) {
-        case 'GET_CARD':
-            return Object.assign({}, state, {
-                card: action
-            });
-        default:
-            return state;
+const todos = handleActions({
+    INCREASE: (state, action) => {
+        const { payload } = action;
+        return {
+            ...state,
+            count: payload + 1
+        }
+    },
+    DECREASE: (state, action) => {
+        const { payload } = action;
+        return {
+            ...state,
+            count: payload - 1
+        }
     }
-};
-export default home;
+}, initialState);
+
+export default todos;

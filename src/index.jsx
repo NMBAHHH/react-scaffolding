@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { createBrowserHistory } from 'history';
-import logger from 'redux-logger';
 import promise from 'redux-promise';
 import { ConnectedRouter } from 'react-router-redux';
 import router from './router';
-import rootReducers from './reducers/index';
+import rootReducers from './reducers/rootReducers';
 
 const history = createBrowserHistory();
 
 const store = createStore(
     rootReducers,
-    applyMiddleware(promise, logger),
+    applyMiddleware(promise),
 );
 
 ReactDOM.render(
