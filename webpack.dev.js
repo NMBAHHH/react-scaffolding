@@ -32,7 +32,7 @@ module.exports = {
     plugins: [
         // 配置入口页面
         new HtmlWebpackPlugin({
-            title: 'sight',
+            title: 'react-scaffolding',
             template: 'public/index.html',
             removeComments: true,
             collapseWhitespace: true,
