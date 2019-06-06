@@ -1,10 +1,10 @@
 import * as homeApi from '../servers/home.jsx';
 import { createAction } from 'redux-actions';
 
-const increase = createAction('INCREASE');
-const decrease = createAction('DECREASE');
-
-export {
-    increase,
-    decrease
-};
+export const INCREASE = 'INCREASE';
+export function increase(params) {
+    return {
+        type: INCREASE,
+        payload: homeApi.getCard(params)
+    };
+}

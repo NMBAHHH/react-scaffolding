@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
+import * as homeApi from '../../servers/home.jsx';
 import * as action from '../../actions/Home';
 import './index.less';
 
 const mapStateToProps = state => {
     const { home } = state;
     return {
-        count: home.count
+        home
     };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        increase: (...args) => dispatch(action.increase(...args)),
-        decrease: (...args) => dispatch(action.decrease(...args))
+        increase: (...args) => dispatch(action.increase(...args))
     }
 }
 class Index extends Component {
@@ -23,13 +23,22 @@ class Index extends Component {
         this.state = {};
     }
 
+    test = () => {
+        const { getCard } = this.props;
+        getCard();
+    }
+
     render() {
-        const { increase, decrease, count } = this.props;
+        const { increase, home: { isLoading } } = this.props;
         return (
             <section>
-                <div>计数：{count}</div>
-                <Button type="primary" onClick={increase.bind(this, count)}>增加</Button>
-                <Button type="primary" onClick={decrease.bind(this, count)}>减少</Button>
+                <Button
+                    type="primary"
+                    onClick={increase}
+                    loading={isLoading}
+                >
+                    增加
+                </Button>
             </section>
         );
     }

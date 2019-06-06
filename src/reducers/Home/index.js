@@ -1,24 +1,16 @@
 import { handleActions } from 'redux-actions';
+import { INCREASE } from './../../actions/Home';
 
-const initialState = {
-    count: 0 
-};
+const initialState = {};
 
 const todos = handleActions({
-    INCREASE: (state, action) => {
+    [INCREASE]: (state, action) => {
         const { payload } = action;
         return {
             ...state,
-            count: payload + 1
+            ...payload
         }
     },
-    DECREASE: (state, action) => {
-        const { payload } = action;
-        return {
-            ...state,
-            count: payload - 1
-        }
-    }
 }, initialState);
 
 export default todos;
