@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'antd';
+import { createBrowserHistory } from 'history';
+import { Table, Button } from 'antd';
 import './index.less';
+
+const history = createBrowserHistory();
 
 const columns = [
     {
@@ -63,8 +66,16 @@ class Index extends Component {
     }
 
     render() {
+
+        console.log(history);
         return (
-            <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+            <div>
+                <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+                <Button onClick={() => {
+                    console.log(333);
+                    history.push('/chart');
+                }}>test</Button>
+            </div>
         );
     }
 }

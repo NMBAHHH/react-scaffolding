@@ -1,29 +1,30 @@
 // 路由配置文件
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Home from './pages/Home/index';
-import About from './pages/About/index';
-import Table from './pages/Table/index';
+import AsyncCompnent from './components/AsyncComponent/index';
+const Home = AsyncCompnent(() => import("./pages/Home/index"));
+const Chart = AsyncCompnent(() => import("./pages/Chart/index"));
+const Table = AsyncCompnent(() => import("./pages/Table/index"));
 
 const routes = [
     {
-        path: '/',
-        component: Home,
+        path: '/chart',
+        component: Chart,
     },
     {
-        path: '/about',
-        component: About,
+        path: '/table',
+        component: Table
     },
     {
-        path: '/navigation1/table',
+        path: '/home',
         component: Table,
     },
 ];
 
 const RouteWithSubRoutes = route => (
     <Route
-        path={route.path}
         exact
+        path={route.path}
         render={props => (
             <route.component {...props} routes={route.routes} />
         )}
