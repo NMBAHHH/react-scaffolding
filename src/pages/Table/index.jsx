@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createBrowserHistory } from 'history';
+import { withRouter } from 'react-router';
 import { Table, Button } from 'antd';
 import './index.less';
 
@@ -66,18 +67,15 @@ class Index extends Component {
     }
 
     render() {
-
-        console.log(history);
         return (
             <div>
                 <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
                 <Button onClick={() => {
-                    console.log(333);
-                    history.push('/chart');
+                    this.props.history.push('/chart');
                 }}>test</Button>
             </div>
         );
     }
 }
 
-export default Index;
+export default withRouter(Index);

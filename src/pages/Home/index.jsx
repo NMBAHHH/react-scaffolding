@@ -85,8 +85,10 @@ class Index extends Component {
                             <LayoutHeader />
                         </Header>
                         <Content className="home-content">
-                            {routeConfig}
-                            <Redirect from={"*"} to={'/home'} />
+                            <Switch>
+                                {routeConfig}
+                                <Redirect from="/*" to="/home" />
+                            </Switch>
                         </Content>
                     </Layout>
                 </Layout>
