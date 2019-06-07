@@ -3,6 +3,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import Home from './pages/Home/index';
 import About from './pages/About/index';
+import Table from './pages/Table/index';
 
 const routes = [
     {
@@ -12,6 +13,10 @@ const routes = [
     {
         path: '/about',
         component: About,
+    },
+    {
+        path: '/navigation1/table',
+        component: Table,
     },
 ];
 

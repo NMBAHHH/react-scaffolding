@@ -23,6 +23,7 @@
     "core-js": "^2.6.9",
     "cross-fetch": "^2.2.1",
     "css-loader": "^2.1.1",
+    "echarts": "^4.2.1",
     "eslint": "^5.15.3",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-loader": "^2.1.2",
