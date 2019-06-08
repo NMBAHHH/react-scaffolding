@@ -29,3 +29,10 @@
 ├── webpack.dev.js          // webpack开发
 ├── webpack.prod.js         // webpack生产
 </pre>
+
+# 解决问题
+
+1、不需要重复定义action，比如等待Action、成功Actoin、失败Action。写更少的action
+2、reducer纯函数式管理，更简洁。
+3、只需定义一个标准的FSA，不用关心异步处理。
+4、路由完全匹配导航，包含url输入，js跳转。
