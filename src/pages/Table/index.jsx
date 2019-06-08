@@ -2,13 +2,29 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createBrowserHistory } from 'history';
 import { withRouter } from 'react-router';
-import { Table, Button } from 'antd';
-import * as homeApi from '../../servers/home';
-import * as action from '../../actions/Home';
+import { Table, Button, message, Select } from 'antd';
+import * as tableApi from '../../servers/table';
+import * as action from '../../actions/table';
 import './index.less';
 
 const history = createBrowserHistory();
 
+const { Option } = Select;
+
+const mapStateToProps = state => {
+    const { table } = state;
+    return {
+        table: table.toJS()
+    };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        getTable: (...args) => dispatch(action.getTable(...args))
+    }
+}
+
+// 表格列配置
 const columns = [
     {
         title: 'Name',
@@ -24,73 +40,53 @@ const columns = [
         dataIndex: 'address',
     },
 ];
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '4',
-        name: 'Disabled User',
-        age: 99,
-        address: 'Sidney No. 1 Lake Park',
-    },
-];
-
-const mapStateToProps = state => {
-    const { home } = state;
-    return {
-        home: home.toJS()
-    };
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        increase: (...args) => dispatch(action.increase(...args)),
-        test2: (...args) => dispatch(action.test2(...args))
-    }
-}
-
-// rowSelection object indicates the need for row selection
-const rowSelection = {
-    onChange: (selectedRowKeys, selectedRows) => {
-        console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-    },
-    getCheckboxProps: record => ({
-        disabled: record.name === 'Disabled User', // Column configuration not to be checked
-        name: record.name,
-    }),
-};
 
 class Index extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            // 表格数据
+            tableData: []
+        };
+    }
+
+    componentDidMount() {
+        const { getTable } = this.props;
+        getTable();
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        const { table: { tableData } } = props;
+        if(tableData.code == 500) {
+            message.error(tableData.error, 3);
+            return state;
+        }
+
+        return {
+            tableData,
+        }
     }
 
     render() {
-        const { history } = this.props;
+        const { tableData, tableData: { listData, isLoading } } = this.state;
         return (
-            <div>
-                <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
-                <Button onClick={() => {
-                    history.push('/chart');
-                }}>点我试试，跳转到图表页面</Button>
-            </div>
+            <main>
+                <section className="table-select">
+                    <Select defaultValue="lucy" style={{ width: 120 }}>
+                        <Option value="jack">Jack</Option>
+                    </Select>
+                    <article className="table-search">
+                        <Button type="primary">
+                            搜索
+                        </Button>
+                    </article>
+                </section>
+                <Table
+                    columns={columns}
+                    dataSource={listData ? listData : []}
+                    loading={isLoading}
+                />
+            </main>
         );
     }
 }

@@ -1,9 +1,9 @@
 // reducers配置文件
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import home from './home';
+import table from './table';
 const rootReducers = combineReducers({
-    home,
+    table,
     router: routerReducer,
 });
 export default rootReducers;

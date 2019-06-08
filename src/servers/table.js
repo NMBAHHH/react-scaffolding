@@ -2,9 +2,9 @@ import {
     request
 } from '../request';
 
-export function getCard() {
+export function getTable() {
     return request({
-        url: 'getCard',
+        url: 'getTable',
         options: {
             method: 'GET'
         }
