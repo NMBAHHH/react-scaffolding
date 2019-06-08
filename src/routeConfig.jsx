@@ -2,11 +2,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import AsyncCompnent from './components/AsyncComponent/index';
-const Home = AsyncCompnent(() => import("./pages/Home/index"));
 const Chart = AsyncCompnent(() => import("./pages/Chart/index"));
 const Table = AsyncCompnent(() => import("./pages/Table/index"));
 
 const routes = [
+    {
+        path: '/home',
+        component: Table,
+    },
     {
         path: '/chart',
         component: Chart,
@@ -14,10 +17,6 @@ const routes = [
     {
         path: '/table',
         component: Table
-    },
-    {
-        path: '/home',
-        component: Table,
     },
 ];
 

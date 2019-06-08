@@ -1,4 +1,3 @@
-import { handleActions } from 'redux-actions';
 import { fromJS } from 'immutable';
 import { createReducer } from 'redux-immutablejs';
 import { 

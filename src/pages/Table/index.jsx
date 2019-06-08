@@ -83,16 +83,13 @@ class Index extends Component {
     }
 
     render() {
-        const { increase, test2 } = this.props;
-        console.log(this.props);
+        const { history } = this.props;
         return (
             <div>
                 <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
                 <Button onClick={() => {
-                    this.props.history.push('/chart');
-                }}>test</Button>
-                <Button onClick={increase}>123</Button>
-                <Button onClick={test2}>456</Button>
+                    history.push('/chart');
+                }}>点我试试，跳转到图表页面</Button>
             </div>
         );
     }
