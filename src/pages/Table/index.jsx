@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { createBrowserHistory } from 'history';
 import { withRouter } from 'react-router';
 import { Table, Button } from 'antd';
+import * as homeApi from '../../servers/home';
+import * as action from '../../actions/Home';
 import './index.less';
 
 const history = createBrowserHistory();
@@ -49,6 +51,20 @@ const data = [
     },
 ];
 
+const mapStateToProps = state => {
+    const { home } = state;
+    return {
+        home: home.toJS()
+    };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        increase: (...args) => dispatch(action.increase(...args)),
+        test2: (...args) => dispatch(action.test2(...args))
+    }
+}
+
 // rowSelection object indicates the need for row selection
 const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -67,15 +83,18 @@ class Index extends Component {
     }
 
     render() {
+        const { increase, test2 } = this.props;
+        console.log(this.props);
         return (
             <div>
                 <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
                 <Button onClick={() => {
                     this.props.history.push('/chart');
                 }}>test</Button>
+                <Button onClick={increase}>123</Button>
+                <Button onClick={test2}>456</Button>
             </div>
         );
     }
 }
-
-export default withRouter(Index);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Index));

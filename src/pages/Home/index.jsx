@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Switch, Link, Route, Redirect, withRouter, Router } from 'react-router-dom';
+import {
+    Switch,
+    Link,
+    Route,
+    Redirect,
+    Router
+} from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 import LayoutHeader from '../../components/LayoutHeader/index';
 import LayoutSider from '../../components/LayoutSider/index';
-import AsyncCompnent from '../../components/AsyncComponent/index';
 import { createBrowserHistory } from 'history';
-import { ConnectedRouter } from 'react-router-redux';
 import Table from '../../pages/Table/index';
 import Chart from '../../pages/Chart/index';
 import routeConfig from '../../routeConfig';
-import * as homeApi from '../../servers/home.jsx';
-import * as action from '../../actions/Home';
 import './index.less';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -20,18 +21,6 @@ const { SubMenu } = Menu;
 
 const history = createBrowserHistory();
 
-const mapStateToProps = state => {
-    const { home } = state;
-    return {
-        home
-    };
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        increase: (...args) => dispatch(action.increase(...args))
-    }
-}
 class Index extends Component {
     constructor(props) {
         super(props);
@@ -41,7 +30,6 @@ class Index extends Component {
     }
 
     render() {
-        const { increase, home: { isLoading } } = this.props;
         const { selectedKeys } = this.state;
         return (
             <Router history={history}>
@@ -97,4 +85,4 @@ class Index extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default Index;
