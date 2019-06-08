@@ -23,6 +23,12 @@ class Index extends Component {
     }
 
     static getDerivedStateFromProps(props, state) {
+        if(props.location.pathname == '/home') {
+            return {
+                pathname: '/table',
+                selectedKeys: ['/table']
+            }
+        }
         if(props.location.pathname != state.pathname) {
             return {
                 pathname: props.location.pathname,
