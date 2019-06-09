@@ -2,7 +2,7 @@ import {
     message,
 } from 'antd';
 
-const getApi = process.env.NODE_ENV === 'production' ? 'https://downfuture.com:9000/api/v1/' : 'http://localhost:9000/api/v1/';
+const getApi = process.env.NODE_ENV != 'production' ? '//downfuture.com:9000/api/v1/' : '//localhost:9000/api/v1/';
 
 function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
