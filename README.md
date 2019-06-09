@@ -1,9 +1,9 @@
 # 运行效果
 ![表格](https://sight-world.oss-cn-hangzhou.aliyuncs.com/images/WechatIMG615.png)
-![表格](https://sight-world.oss-cn-hangzhou.aliyuncs.com/images/WechatIMG616.png)
+![图表](https://sight-world.oss-cn-hangzhou.aliyuncs.com/images/WechatIMG616.png)
 
 # 特点
-1. 不需要重复定义action，比如等待Action、成功Actoin、失败Action。写更少的action，做更多的事。
+1. 不需要重复定义action，比如等待Action、成功Actoin、失败Action。写更少的action，完成更多的事。
 ```
 export const GET_TABLE = 'GET_TABLE';
 export function getTable(params) {
@@ -13,7 +13,7 @@ export function getTable(params) {
     };
 }
 ```
-2. 自定义中间件，帮助处理action无法完成的事。
+2. 自定义中间件，帮助Action完成异步操作。
 ```
 function middleware({ dispatch }) {
     return next => action => {
@@ -37,7 +37,7 @@ function middleware({ dispatch }) {
     };
 }
 ```
-3. reducer纯函数式管理，更简洁，持久化数据结构。
+3. 对reducer引入immutable，更简洁，持久化数据结构。
 ```
 import { fromJS } from 'immutable';
 import { createReducer } from 'redux-immutablejs';
@@ -56,6 +56,31 @@ export default createReducer(initialState, {
 });
 ```
 4. 路由完全匹配导航，包含url输入，js跳转。
+```
+componentDidMount() {
+    const { location: { pathname } } = this.props;
+    this.setState({
+        selectedKeys: [pathname],
+        pathname
+    });
+}
+
+static getDerivedStateFromProps(props, state) {
+    if(props.location.pathname == '/home') {
+        return {
+            pathname: '/table',
+            selectedKeys: ['/table']
+        }
+    }
+    if(props.location.pathname != state.pathname) {
+        return {
+            pathname: props.location.pathname,
+            selectedKeys: [props.location.pathname]
+        }
+    }
+    return state;
+}
+```
 
 # 环境
 ```
@@ -78,7 +103,6 @@ $ npm start
 ```
 $ npm run build
 ```
-将dist文件夹放到服务器，配置nginx访问即可
 
 # 目录结构
 <pre>
@@ -122,3 +146,8 @@ $ npm run build
 ├── webpack.dev.js                   # webpack开发
 ├── webpack.prod.js                  # webpack生产
 </pre>
+
+# 未完待续
+1. 配置eslint
+2. 引入ts
+3. 单元测试
