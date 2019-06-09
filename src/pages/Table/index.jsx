@@ -48,6 +48,9 @@ class Index extends Component {
             // 表格数据
             tableData: []
         };
+
+        // 选择框选中的值
+        this.selectValue = '';
     }
 
     componentDidMount() {
@@ -67,16 +70,35 @@ class Index extends Component {
         }
     }
 
+    // 搜索
+    search = () => {
+        const { getTable } = this.props;
+        let datas = {
+            selectValue: this.selectValue
+        };
+        getTable(datas);
+    }
+
     render() {
         const { tableData, tableData: { listData, isLoading } } = this.state;
         return (
             <main>
                 <section className="table-select">
-                    <Select defaultValue="lucy" style={{ width: 120 }}>
-                        <Option value="jack">Jack</Option>
+                    <Select
+                        placeholder="全部"
+                        style={{ width: 120 }}
+                        onChange={(value) => this.selectValue = value}
+                        allowClear
+                    >
+                        <Option value={1}>John</Option>
+                        <Option value={2}>Jim</Option>
+                        <Option value={3}>Joe</Option>
                     </Select>
                     <article className="table-search">
-                        <Button type="primary">
+                        <Button
+                            type="primary"
+                            onClick={this.search}
+                        >
                             搜索
                         </Button>
                     </article>
