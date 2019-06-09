@@ -1,3 +1,7 @@
+# 运行效果
+![表格](https://sight-world.oss-cn-hangzhou.aliyuncs.com/images/WechatIMG615.png)
+![表格](https://sight-world.oss-cn-hangzhou.aliyuncs.com/images/WechatIMG616.png)
+
 # 特点
 1. 不需要重复定义action，比如等待Action、成功Actoin、失败Action。写更少的action，做更多的事。
 ```
@@ -118,5 +122,3 @@ $ npm run build
 ├── webpack.dev.js                   # webpack开发
 ├── webpack.prod.js                  # webpack生产
 </pre>
-
-# 运行效果
