@@ -99,7 +99,7 @@ class Index extends Component {
                             type="primary"
                             onClick={this.search}
                         >
-                            搜索
+                            搜索test
                         </Button>
                     </article>
                 </section>
