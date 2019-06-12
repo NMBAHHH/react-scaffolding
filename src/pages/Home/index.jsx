@@ -7,12 +7,12 @@ import {
     Router
 } from 'react-router-dom';
 import { Layout, Icon } from 'antd';
+import { createBrowserHistory } from 'history';
 import LayoutHeader from '../../components/LayoutHeader/index';
 import LayoutSider from '../../components/LayoutSider/index';
 import Menu from './components/menu';
-import { createBrowserHistory } from 'history';
-import Table from '../../pages/Table/index';
-import Chart from '../../pages/Chart/index';
+import Table from '../Table/index';
+import Chart from '../Chart/index';
 import routeConfig from '../../routeConfig';
 import './index.less';
 
@@ -35,7 +35,7 @@ class Index extends Component {
                             overflow: 'auto',
                             height: '100vh',
                             position: 'fixed',
-                            left: 0,
+                            left: 0
                         }}
                     >
                         <div className="logo" />
@@ -48,7 +48,10 @@ class Index extends Component {
                         <Content className="home-content">
                             <Switch>
                                 {routeConfig}
-                                <Redirect from="/*" to="/home" />
+                                <Redirect
+                                    from="/*"
+                                    to="/home"
+                                />
                             </Switch>
                         </Content>
                     </Layout>

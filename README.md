@@ -87,7 +87,68 @@ static getDerivedStateFromProps(props, state) {
 npm ^6.5.0
 node ^11.4.0
 ```
-
+## 推荐使用vscode IDE
+## 推荐安装以下插件
+- Auto Close Tag
+- Auto Rename Tag
+- Beautify
+- GitLens
+- JavaScript (ES6) code snippets
+- Path Autocomplete
+- Path Intellisense
+- React-Native/React/Redux snippets for es6/es7
+- StandardJS - JavaScript Standard Style
+- Vetur
+- vscode wxml
+- vscode-fileheader
+- vscode-icons
+- wxml
+- ESLint
+- Import Cost
+## vscode 用户自定义配置
+```
+{
+    // 禁止vscode的默认制表符
+    "editor.detectIndentation": false,
+    // 制表符为4
+    "editor.tabSize": 4,
+    // 自动换行
+    "editor.wordWrap": "on",
+    // 字体大小
+    "editor.fontSize": 16,
+    // 启用后，将不会显示扩展程序建议的通知。
+    "extensions.ignoreRecommendations": true,
+    // 指定工作台中使用的颜色主题。
+    "workbench.colorTheme": "Monokai",
+    // 保存时格式化文件。 格式化程序必须可用，延迟后不得保存文件，并且编辑器不能关闭。
+    "editor.formatOnSave": false,
+    // 没有分阶段更改时提交所有更改。
+    "git.enableSmartCommit": true,
+    // 配置glob模式以排除文件和文件夹。 例如，文件资源管理器根据此设置决定显示或隐藏哪些文件和文件夹。 阅读更多关于glob模式的信息
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true
+    },
+    "javascript.validate.enable" : false,
+    "eslint.autoFixOnSave": true,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "html",
+        {
+            "language": "html",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        }
+    ]
+}
+```
 # 启动
 ```
 $ git clone https://github.com/xuya227939/react-scaffolding.git
@@ -148,6 +209,5 @@ $ npm run build
 </pre>
 
 # 未完待续
-1. 配置eslint
-2. 引入ts
-3. 单元测试
+1. 引入ts
+2. 单元测试
