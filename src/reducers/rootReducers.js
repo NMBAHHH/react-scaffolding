@@ -4,6 +4,6 @@ import { routerReducer } from 'react-router-redux';
 import table from './table';
 const rootReducers = combineReducers({
     table,
-    router: routerReducer,
+    router: routerReducer
 });
 export default rootReducers;

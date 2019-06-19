@@ -1,4 +1,3 @@
-const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,7 +5,7 @@ const webpackBase = require('./webpack.base.conf');
 
 module.exports = {
     // 配置源码显示方式
-    devtool: 'source-map',
+    devtool: 'eval-source-map',
     mode: 'development',
     entry: ['./src/index.jsx', 'whatwg-fetch'],
     resolve: webpackBase.resolve,
@@ -43,14 +42,14 @@ module.exports = {
             keepClosingSlash: true,
             minifyJS: true,
             minifyCSS: true,
-            minifyURLs: true,
+            minifyURLs: true
         }),
         // webpackBase.HtmlWebpackPlugin,
         new MiniCssExtractPlugin({
             filename: '[name].css',
-            chunkFilename: '[id].css',
+            chunkFilename: '[id].css'
         }),
-        new webpack.NamedModulesPlugin(),
+        new webpack.NamedModulesPlugin()
         // new webpack.HotModuleReplacementPlugin()
     ],
     devServer: webpackBase.devServer,

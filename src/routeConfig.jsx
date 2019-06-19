@@ -1,23 +1,23 @@
 // 路由配置文件
-import React from 'react';
+import React, { lazy } from 'react';
 import { Route } from 'react-router-dom';
-import AsyncCompnent from './components/AsyncComponent/index';
-const Chart = AsyncCompnent(() => import("./pages/Chart/index"));
-const Table = AsyncCompnent(() => import("./pages/Table/index"));
+
+const Chart = lazy(() => import('./pages/Chart/index'));
+const Table = lazy(() => import('./pages/Table/index'));
 
 const routes = [
     {
         path: '/home',
-        component: Table,
+        component: Table
     },
     {
         path: '/chart',
-        component: Chart,
+        component: Chart
     },
     {
         path: '/table',
         component: Table
-    },
+    }
 ];
 
 const RouteWithSubRoutes = route => (
@@ -30,6 +30,5 @@ const RouteWithSubRoutes = route => (
     />
 );
 
-// eslint-disable-next-line react/no-array-index-key
 const routeConfig = routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />);
 export default routeConfig;

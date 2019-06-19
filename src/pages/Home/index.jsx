@@ -1,22 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import {
     Switch,
-    Link,
-    Route,
     Redirect,
     Router
 } from 'react-router-dom';
-import { Layout, Icon } from 'antd';
+import { Layout } from 'antd';
 import { createBrowserHistory } from 'history';
 import LayoutHeader from '../../components/LayoutHeader/index';
-import LayoutSider from '../../components/LayoutSider/index';
 import Menu from './components/menu';
-import Table from '../Table/index';
-import Chart from '../Chart/index';
 import routeConfig from '../../routeConfig';
 import './index.less';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 const history = createBrowserHistory();
 
@@ -46,13 +41,15 @@ class Index extends Component {
                             <LayoutHeader />
                         </Header>
                         <Content className="home-content">
-                            <Switch>
-                                {routeConfig}
-                                <Redirect
-                                    from="/*"
-                                    to="/home"
-                                />
-                            </Switch>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <Switch>
+                                    {routeConfig}
+                                    <Redirect
+                                        from="/*"
+                                        to="/home"
+                                    />
+                                </Switch>
+                            </Suspense>
                         </Content>
                     </Layout>
                 </Layout>

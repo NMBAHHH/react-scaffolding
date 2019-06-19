@@ -1,6 +1,6 @@
 # 运行效果
-![表格](https://sight-world.oss-cn-hangzhou.aliyuncs.com/images/WechatIMG615.png)
-![图表](https://sight-world.oss-cn-hangzhou.aliyuncs.com/images/WechatIMG616.png)
+![demo](https://sight-world.oss-cn-hangzhou.aliyuncs.com/images/react-demo.gif
+)
 
 # 特点
 1. 不需要重复定义action，比如等待Action、成功Actoin、失败Action。写更少的action，完成更多的事。
@@ -164,50 +164,59 @@ $ npm start
 ```
 $ npm run build
 ```
+然后会在script目录下生成dist目录
 
 # 目录结构
 <pre>
 .
 ├── public
 │   └── index.html
-├── src                              # 主入口
-│   ├── actions                      # action层
+├── script                              # webpack
+│   ├── dist
+│   │   ├── 1.02f616b.js
+│   │   ├── 1.css
+│   │   ├── 2.02f616b.js
+│   │   ├── 3.02f616b.js
+│   │   ├── 4.02f616b.js
+│   │   ├── index.html
+│   │   ├── main.02f616b.css
+│   │   ├── main.02f616b.js
+│   │   └── main.02f616b.js.LICENSE
+│   ├── webpack.base.conf.js
+│   ├── webpack.dev.js
+│   └── webpack.prod.js
+├── src                                 # 主入口
+├── ├── utils                           # 工具类
+│   ├── actions                         # action层
 │   │   └── table.js
-│   ├── components                   # 页面共享组件
-│   │   ├── AsyncComponent
-│   │   │   └── index.jsx
-│   │   ├── LayoutHeader
-│   │   │   ├── index.jsx
-│   │   │   └── index.less
-│   │   └── LayoutSider
+│   ├── components                      # 页面共享组件
+│   │   └── LayoutHeader
 │   │       ├── index.jsx
 │   │       └── index.less
-│   ├── index.jsx                    # 主入口文件js
-│   ├── pages                        # 页面层
+│   ├── index.jsx                       # 主入口文件js
+│   ├── pages                           # 页面层
 │   │   ├── Chart
 │   │   │   ├── index.jsx
 │   │   │   └── index.less
 │   │   ├── Home
-│   │   │   ├── components           # 页面独立的组件层
+│   │   │   ├── components              # 页面独立的组件层
 │   │   │   │   └── menu.jsx
 │   │   │   ├── index.jsx
 │   │   │   └── index.less
 │   │   └── Table
 │   │       ├── index.jsx
 │   │       └── index.less
-│   ├── reducers                     # reducer层
+│   ├── reducers                        # reducer层
 │   │   ├── rootReducers.js
 │   │   └── table.js
-│   ├── request.jsx                  # 网络层
-│   ├── routeConfig.jsx              # 路由层
-│   └── servers                      # 接口层
+│   ├── request.jsx                     # 网络层
+│   ├── routeConfig.jsx                 # 路由层
+│   └── servers                         # 接口层
 │       └── table.js
-├── utils                            # 工具类
-├── webpack.base.conf.js             # webpack公共配置
-├── webpack.dev.js                   # webpack开发
-├── webpack.prod.js                  # webpack生产
+├── yarn-error.log
+└── yarn.lock
 </pre>
 
 # 未完待续
-1. 引入ts
-2. 单元测试
+1. 如何更优雅的处理loading
+2. 引入ts

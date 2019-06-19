@@ -1,24 +1,23 @@
-const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     resolve: {
-        extensions: ['.js', '.jsx', '.css', '.less'],
+        extensions: ['.js', '.jsx', '.css', '.less']
     },
     module: {
         rules: [
             {
                 test: /\.js|jsx$/,
                 exclude: /(node_modules)/,
-                loader: 'babel-loader',
+                loader: 'babel-loader'
             },
             {
                 test: /\.css$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'css-loader',
-                ],
+                    'css-loader'
+                ]
             },
             {
                 test: /\.less$/,
@@ -27,25 +26,25 @@ module.exports = {
                     {
                         loader: 'css-loader',
                         options: {
-                            importLoaders: 1,
-                        },
+                            importLoaders: 1
+                        }
                     },
-                    'less-loader',
-                ],
+                    'less-loader'
+                ]
             },
             {
                 test: /\.(png|svg|jpg|gif|jpeg)$/,
                 use: [
-                    'file-loader',
-                ],
+                    'file-loader'
+                ]
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: [
-                    'file-loader',
-                ],
-            },
-        ],
+                    'file-loader'
+                ]
+            }
+        ]
     },
     HtmlWebpackPlugin: [
         new HtmlWebpackPlugin({
@@ -60,16 +59,16 @@ module.exports = {
             keepClosingSlash: true,
             minifyJS: true,
             minifyCSS: true,
-            minifyURLs: true,
-        }),
+            minifyURLs: true
+        })
     ],
     devServer: {
         hot: false,
         historyApiFallback: true,
         // contentBase: path.resolve(__dirname,'src/index.js'),
-        compress: true,
+        compress: true
     },
     externals: {
-        antd: 'antd',
-    },
+        antd: 'antd'
+    }
 };

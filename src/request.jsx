@@ -1,8 +1,6 @@
-import {
-    message,
-} from 'antd';
+import { message } from 'antd';
 
-const getApi = process.env.NODE_ENV != 'production' ? '//downfuture.com:9000/api/v1/' : '//localhost:9000/api/v1/';
+const getApi = process.env.NODE_ENV != 'production' ? 'https://downfuture.com:9000/api/v1/' : '//localhost:9000/api/v1/';
 
 function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
@@ -17,10 +15,9 @@ function parseJSON(response) {
     return response.json();
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export function request({
     url,
-    options,
+    options
 }) {
     const optionsBak = options;
     optionsBak.mode = 'cors';

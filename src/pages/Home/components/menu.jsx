@@ -27,13 +27,13 @@ class Index extends Component {
             return {
                 pathname: '/table',
                 selectedKeys: ['/table']
-            }
+            };
         }
         if(props.location.pathname != state.pathname) {
             return {
                 pathname: props.location.pathname,
                 selectedKeys: [props.location.pathname]
-            }
+            };
         }
         return state;
     }
@@ -58,10 +58,10 @@ class Index extends Component {
                     }
                 >
                     <Menu.Item key="/table">
-                        <Link to='/table'>表格</Link>
+                        <Link to="/table">表格</Link>
                     </Menu.Item>
                     <Menu.Item key="/chart">
-                        <Link to='/chart'>图表</Link>
+                        <Link to="/chart">图表</Link>
                     </Menu.Item>
                 </SubMenu>
             </Menu>

@@ -3,18 +3,20 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpackBase = require('./webpack.base.conf');
 
 module.exports = {
     // 配置源码显示方式
-    devtool: 'hidden-source-map',
+    // devtool: 'cheap-source-map',
     mode: 'production',
     entry: ['./src/index.jsx'],
     output: {
         filename: '[name].[hash].js',
         hashDigestLength: 7,
         path: path.resolve(__dirname, 'dist'),
-        publicPath: './',
+        publicPath: './'
     },
     resolve: webpackBase.resolve,
     module: webpackBase.module,
@@ -34,20 +36,22 @@ module.exports = {
             keepClosingSlash: true,
             minifyJS: true,
             minifyCSS: true,
-            minifyURLs: true,
+            minifyURLs: true
         }),
-        // 压缩css
+        // 抽取css
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css',
-            chunkFilename: '[id].css',
+            chunkFilename: '[id].css'
         }),
         // 压缩js
         new UglifyJSPlugin({
             test: /(\.jsx|\.js)$/,
             extractComments: true,
             parallel: true,
-            cache: true,
+            cache: true
         }),
+        new OptimizeCssAssetsPlugin()
+        // new BundleAnalyzerPlugin({ analyzerPort: 8081 })
     ],
     devServer: webpackBase.devServer,
     externals: webpackBase.externals

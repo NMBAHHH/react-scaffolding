@@ -1,17 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import './index.less';
-const mapStateToProps = state => {
-    return {
-        state
-    };
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        increase: (...args) => dispatch(action.increase(...args))
-    }
-}
 class Index extends Component {
     constructor(props) {
         super(props);
@@ -27,4 +15,4 @@ class Index extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default Index;
