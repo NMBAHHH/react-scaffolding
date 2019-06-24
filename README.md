@@ -218,5 +218,4 @@ $ npm run build
 </pre>
 
 # 未完待续
-1. 如何更优雅的处理loading
-2. 引入ts
+引入ts

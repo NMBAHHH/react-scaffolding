@@ -5,6 +5,7 @@ export const GET_TABLE = 'GET_TABLE';
 export function getTable(params) {
     return {
         type: GET_TABLE,
-        payload: api.getTable(params)
+        payload: api.getTable(params),
+        isLoading: true
     };
 }

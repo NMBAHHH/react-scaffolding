@@ -5,7 +5,7 @@ const webpackBase = require('./webpack.base.conf');
 
 module.exports = {
     // 配置源码显示方式
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     mode: 'development',
     entry: ['./src/index.jsx', 'whatwg-fetch'],
     resolve: webpackBase.resolve,
