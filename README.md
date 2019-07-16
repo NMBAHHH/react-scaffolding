@@ -105,6 +105,8 @@ node ^11.4.0
 - wxml
 - ESLint
 - Import Cost
+- clear-console
+- Beautify css/sass/scss/less
 ## vscode 用户自定义配置
 ```
 {
