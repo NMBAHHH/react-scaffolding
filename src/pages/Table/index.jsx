@@ -98,6 +98,7 @@ class Index extends Component {
                         <Button
                             onClick={this.search}
                             type="primary"
+                            loading={isLoading}
                         >
                             搜索
                         </Button>

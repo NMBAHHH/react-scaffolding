@@ -10,24 +10,6 @@ module.exports = {
     entry: ['./src/index.jsx', 'whatwg-fetch'],
     resolve: webpackBase.resolve,
     module: webpackBase.module,
-    // optimization: {
-    //     splitChunks: {
-    //         cacheGroups: {
-    //             vendor: {
-    //                 test: /node_modules/,
-    //                 chunks: 'initial',
-    //                 name: 'common/vendor',
-    //                 priority: 10,
-    //             },
-    //             utils: {
-    //                 test: /\.js$/,
-    //                 chunks: 'initial',
-    //                 name: 'common/utils',
-    //                 minSize: 0,
-    //             },
-    //         },
-    //     },
-    // },
     plugins: [
         // 配置入口页面
         new HtmlWebpackPlugin({
@@ -44,7 +26,6 @@ module.exports = {
             minifyCSS: true,
             minifyURLs: true
         }),
-        // webpackBase.HtmlWebpackPlugin,
         new MiniCssExtractPlugin({
             filename: '[name].css',
             chunkFilename: '[id].css'

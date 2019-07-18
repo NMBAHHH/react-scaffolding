@@ -13,23 +13,33 @@ module.exports = {
                 loader: 'babel-loader'
             },
             {
-                test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader'
-                ]
-            },
-            {
                 test: /\.less$/,
                 use: [
-                    'style-loader',
+                    {
+                        loader: 'style-loader'
+                    },
                     {
                         loader: 'css-loader',
                         options: {
                             importLoaders: 1
                         }
                     },
-                    'less-loader'
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            modifyVars: {
+                                '@primary-color': '#ff9900'
+                            },
+                            javascriptEnabled: true
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader'
                 ]
             },
             {
@@ -69,6 +79,6 @@ module.exports = {
         compress: true
     },
     externals: {
-        antd: 'antd'
+        'antd': 'antd'
     }
 };
