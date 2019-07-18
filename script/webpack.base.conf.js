@@ -1,9 +1,19 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const theme = require('./../src/css/antd.less');
+
+const path = require('path');
+function resolve(dir) {
+    return path.join(__dirname, '.', dir);
+}
+
 module.exports = {
     resolve: {
-        extensions: ['.js', '.jsx', '.css', '.less']
+        extensions: ['.js', '.jsx', '.css', '.less'],
+        alias:{
+            '@': resolve('src')
+        }
     },
     module: {
         rules: [
@@ -27,9 +37,7 @@ module.exports = {
                     {
                         loader: 'less-loader',
                         options: {
-                            modifyVars: {
-                                '@primary-color': '#ff9900'
-                            },
+                            modifyVars: theme,
                             javascriptEnabled: true
                         }
                     }
@@ -79,6 +87,6 @@ module.exports = {
         compress: true
     },
     externals: {
-        'antd': 'antd'
+        // 'antd': 'antd'
     }
 };
