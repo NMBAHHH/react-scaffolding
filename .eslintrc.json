@@ -119,7 +119,8 @@
         "no-mixed-spaces-and-tabs": 2,
         "prefer-arrow-callback": 0,
         "arrow-parens": 0,
-        "arrow-spacing": 0
+        "arrow-spacing": 0,
+        "camelcase": 0
     },
     "settings": {
         "import/ignore": [

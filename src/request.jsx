@@ -1,6 +1,5 @@
 import { message } from 'antd';
-
-const getApi = process.env.NODE_ENV != 'production' ? 'https://downfuture.com:9000/api/v1/' : '//localhost:9000/api/v1/';
+import { getApi } from './utils/index';
 
 function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
@@ -30,7 +29,7 @@ export function request({
         }
     }
     optionsBak.credentials = 'include';
-    return fetch(getApi + url, optionsBak)
+    return fetch(getApi() + url, optionsBak)
         .then(checkStatus)
         .then(parseJSON)
         .then(data => data)

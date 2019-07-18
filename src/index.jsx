@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { LocaleProvider } from 'antd';
+import zh_CN from 'antd/lib/locale-provider/zh_CN';
 import { Provider } from 'react-redux';
+import { Switch, Router } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
+import { createHashHistory } from 'history';
 import isPromise from 'is-promise';
 import Home from '../src/pages/Home/index';
 import rootReducers from './reducers/rootReducers';
+const history = createHashHistory();
 function middleware({ dispatch }) {
     return next => action => {
         if(!action.isLoading) {
@@ -32,8 +37,14 @@ const store = createStore(
 );
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Home />
-    </Provider>,
+    <LocaleProvider locale={zh_CN}>
+        <Provider store={store}>
+            <Router history={history}>
+                <Switch>
+                    <Home />
+                </Switch>
+            </Router>
+        </Provider>
+    </LocaleProvider>,
     document.getElementById('root'),
 );

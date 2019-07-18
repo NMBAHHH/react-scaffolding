@@ -1,3 +1,10 @@
+/*
+ * 路由权限配置页面
+ * @Author: Jiang
+ * @Date: 2019-07-18 10:33:21
+ * @Last Modified by: Jiang
+ * @Last Modified time: 2019-07-18 10:36:03
+ */
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
