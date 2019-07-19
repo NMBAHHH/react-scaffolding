@@ -22,13 +22,12 @@ export function request({
     optionsBak.mode = 'cors';
     if (!optionsBak.sign) {
         optionsBak.headers = {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         };
         if (!(optionsBak.method === 'GET' || optionsBak.method === 'DELETE')) {
             optionsBak.body = JSON.stringify(optionsBak.body);
         }
     }
-    optionsBak.credentials = 'include';
     return fetch(getApi() + url, optionsBak)
         .then(checkStatus)
         .then(parseJSON)
