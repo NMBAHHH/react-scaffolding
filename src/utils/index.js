@@ -14,7 +14,7 @@ export function getApi() {
         // 本地环境
         getApi = '//localhost:9000/api/v1/';
     }
-    if(location.hostname === 'downfuture.com') {
+    if(location.hostname === 'order.downfuture.com') {
         // 正式环境
         getApi = '//downfuture.com:9000/api/v1/';
     }
