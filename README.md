@@ -1,5 +1,5 @@
 # 预览地址
-![订单系统](https://order.downfuture.com/)
+# https://order.downfuture.com
 
 # 特点
 1. 不需要重复定义action，比如等待Action、成功Actoin、失败Action。写更少的action，完成更多的事。
@@ -16,20 +16,19 @@ export function getTable(params) {
 ```
 function middleware({ dispatch }) {
     return next => action => {
-        if (!isFSA(action)) {
+        if(!action.isLoading) {
             return next(action);
         }
-
         if(isPromise(action.payload)) {
-            dispatch({ ...action, payload: { isLoading: true } });
+            if(action.isLoading) {
+                dispatch({ ...action, payload: { isLoading: action.isLoading } });
+            }
             return action.payload
                 .then(result => {
-                    result.isLoading = false;
                     dispatch({ ...action, payload: result});
                 })
                 .catch(error => {
-                    result.isLoading = false;
-                    dispatch({ ...action, payload: error, error: true})
+                    dispatch({ ...action, payload: error, error: true});
                 });
         }
         return next(action);
@@ -57,25 +56,19 @@ export default createReducer(initialState, {
 4. 路由完全匹配导航，包含url输入，js跳转。
 ```
 componentDidMount() {
-    const { location: { pathname } } = this.props;
-    this.setState({
-        selectedKeys: [pathname],
-        pathname
-    });
-}
+        const { location: { pathname } } = this.props;
+        this.setState({
+            selectedKeys: [pathname],
+            pathname
+        });
+    }
 
 static getDerivedStateFromProps(props, state) {
-    if(props.location.pathname == '/home') {
-        return {
-            pathname: '/table',
-            selectedKeys: ['/table']
-        }
-    }
     if(props.location.pathname != state.pathname) {
         return {
             pathname: props.location.pathname,
             selectedKeys: [props.location.pathname]
-        }
+        };
     }
     return state;
 }
@@ -108,6 +101,7 @@ node ^11.4.0
 - Beautify css/sass/scss/less
 ## vscode 用户自定义配置
 ```
+
 {
     // 禁止vscode的默认制表符
     "editor.detectIndentation": false,
@@ -117,6 +111,8 @@ node ^11.4.0
     "editor.wordWrap": "on",
     // 字体大小
     "editor.fontSize": 16,
+    // 选中糟糕的-
+    "editor.wordSeparators": "./\\()\"':,.;<>~!@#$%^&*|+=[]{}`~?",
     // 启用后，将不会显示扩展程序建议的通知。
     "extensions.ignoreRecommendations": true,
     // 指定工作台中使用的颜色主题。
@@ -139,6 +135,16 @@ node ^11.4.0
         "javascript",
         "javascriptreact",
         "html",
+        "typescriptreact",
+        "typescript",
+        {
+          "language": "typescript",
+          "autoFix": true
+        },
+        {
+          "language": "typescriptreact",
+          "autoFix": true
+        },
         {
             "language": "html",
             "autoFix": true
@@ -147,7 +153,9 @@ node ^11.4.0
             "language": "vue",
             "autoFix": true
         }
-    ]
+    ],
+    "fileheader.Author": "Jiang",
+    "fileheader.LastModifiedBy": "Jiang",
 }
 ```
 # 启动
