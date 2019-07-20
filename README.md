@@ -1,6 +1,5 @@
-# 运行效果
-![demo](https://sight-world.oss-cn-hangzhou.aliyuncs.com/images/react-demo.gif
-)
+# 预览地址
+![订单系统](https://order.downfuture.com/)
 
 # 特点
 1. 不需要重复定义action，比如等待Action、成功Actoin、失败Action。写更少的action，完成更多的事。
