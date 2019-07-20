@@ -2,21 +2,21 @@
 import React, { lazy } from 'react';
 import { Route } from 'react-router-dom';
 
-const Chart = lazy(() => import(/* webpackChunkName: "chart"*/'./pages/Chart/index'));
-const Table = lazy(() => import(/* webpackChunkName: "table"*/'./pages/Table/index'));
-
+const chart = lazy(() => import(/* webpackChunkName: "chart"*/'./pages/Chart/index'));
+const orderList = lazy(() => import(/* webpackChunkName: "orderList"*/'./pages/orderList/index'));
+const addGoods = lazy(() => import(/* webpackChunkName: "addGoods"*/'./pages/AddGoods/index'));
 const routes = [
     {
-        path: '/home',
-        component: Table
-    },
-    {
         path: '/chart',
-        component: Chart
+        component: chart
     },
     {
-        path: '/table',
-        component: Table
+        path: '/order/list',
+        component: orderList
+    },
+    {
+        path: '/add/goods',
+        component: addGoods
     }
 ];
 

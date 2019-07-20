@@ -1,21 +1,17 @@
 /*
  * 路由权限配置页面
- * @Author: Jiang
  * @Date: 2019-07-18 10:33:21
- * @Last Modified by: Jiang
- * @Last Modified time: 2019-07-18 10:36:03
  */
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
-const { SubMenu } = Menu;
 
 
 class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedKeys: ['/table'],
+            selectedKeys: ['/order/list'],
             // 当前页面路径
             pathname: ''
         };
@@ -30,12 +26,6 @@ class Index extends Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        if(props.location.pathname == '/home') {
-            return {
-                pathname: '/table',
-                selectedKeys: ['/table']
-            };
-        }
         if(props.location.pathname != state.pathname) {
             return {
                 pathname: props.location.pathname,
@@ -51,26 +41,31 @@ class Index extends Component {
             <Menu
                 theme="dark"
                 mode="inline"
-                defaultOpenKeys={['sub1']}
+                defaultOpenKeys={['/order/list']}
                 selectedKeys={selectedKeys}
-                onClick={({ key }) => this.setState({ selectedKeys: [key] })}
+                onClick={({ key }) => {
+                    this.props.history.push(key);
+                    this.setState({ selectedKeys: [key] });
+                }}
             >
-                <SubMenu
-                    key="sub1"
-                    title={
-                        <span>
-                            <Icon type="menu" />
-                            <span>Navigation 1</span>
-                        </span>
-                    }
-                >
-                    <Menu.Item key="/table">
-                        <Link to="/table">表格</Link>
-                    </Menu.Item>
-                    <Menu.Item key="/chart">
-                        <Link to="/chart">图表</Link>
-                    </Menu.Item>
-                </SubMenu>
+                <Menu.Item key="/order/list">
+                    <Icon type="shopping-cart" />
+                    <span>
+                        订单管理
+                    </span>
+                </Menu.Item>
+                {/* <Menu.Item key="/chart">
+                    <Icon type="shopping-cart" />
+                    <span>
+                        订单管理
+                    </span>
+                </Menu.Item> */}
+                <Menu.Item key="/add/goods">
+                    <Icon type="shopping" />
+                    <span>
+                        添加商品
+                    </span>
+                </Menu.Item>
             </Menu>
         );
     }

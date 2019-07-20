@@ -5,7 +5,7 @@ import {
     Router
 } from 'react-router-dom';
 import { Layout } from 'antd';
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 import LayoutHeader from '../../components/LayoutHeader/index';
 import Menu from './components/menu';
 import routeConfig from '../../routeConfig';
@@ -13,7 +13,7 @@ import './index.less';
 
 const { Header, Content, Sider } = Layout;
 
-const history = createBrowserHistory();
+const history = createHashHistory();
 
 class Index extends Component {
     constructor(props) {
@@ -24,19 +24,18 @@ class Index extends Component {
     render() {
         return (
             <Router history={history}>
-                <Layout>
+                <Layout className="home-layout">
                     <Sider
                         style={{
                             overflow: 'auto',
                             height: '100vh',
-                            position: 'fixed',
                             left: 0
                         }}
                     >
                         <div className="logo" />
                         <Menu />
                     </Sider>
-                    <Layout style={{ marginLeft: 200 }}>
+                    <Layout>
                         <Header>
                             <LayoutHeader />
                         </Header>
@@ -46,7 +45,7 @@ class Index extends Component {
                                     {routeConfig}
                                     <Redirect
                                         from="/*"
-                                        to="/home"
+                                        to="/order"
                                     />
                                 </Switch>
                             </Suspense>
