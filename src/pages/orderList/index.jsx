@@ -4,7 +4,7 @@ import { message } from 'antd';
 import { withRouter } from 'react-router';
 import * as action from '../../actions/table';
 import OrderListSearch from './component/orderListSearch';
-import orderTable from './component/orderTable';
+import OrderTable from './component/orderTable';
 import './index.less';
 
 const mapStateToProps = state => {
@@ -49,7 +49,7 @@ class Index extends Component {
         return (
             <section>
                 <OrderListSearch />
-                <orderTable listData={listData} isLoading={isLoading} />
+                <OrderTable listData={listData} isLoading={isLoading} />
             </section>
         );
     }

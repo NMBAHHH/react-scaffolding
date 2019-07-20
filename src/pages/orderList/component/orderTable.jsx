@@ -32,7 +32,7 @@ const columns = [
     }
 ];
 
-export default function orderList({ listData, isLoading }) {
+export default function orderTable({ listData, isLoading }) {
     return (
         <Table
             columns={columns}
