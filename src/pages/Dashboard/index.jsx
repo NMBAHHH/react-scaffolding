@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import createG2 from 'g2-react';
+import { Stat } from 'g2';
 import './index.less';
 const Chart = createG2(chart => {
     chart.col('year', {
@@ -8,6 +9,44 @@ const Chart = createG2(chart => {
         alias: '年份'
     });
     chart.areaStack().position('year*value').color('city');
+    chart.render();
+});
+
+const data2 = [
+    {name: '打单', value: 56.33 },
+    {name: '订单', value: 24.03},
+    {name: '合单', value: 10.38}
+];
+
+const Chart2 = createG2(chart => {
+    chart.coord('theta', {
+        radius: 0.8 // 设置饼图的大小
+    });
+    chart.legend('name', {
+        position: 'bottom',
+        itemWrap: true,
+        formatter: function(val) {
+            for(let i = 0, len = data2.length; i < len; i++) {
+                let obj = data2[i];
+                if (obj.name === val) {
+                    return val + ': ' + obj.value + '%';
+                }
+            }
+        }
+    });
+    chart.tooltip({
+        title: null,
+        map: {
+            value: 'value'
+        }
+    });
+    chart.intervalStack()
+        .position(Stat.summary.percent('value'))
+        .color('name')
+        .label('name*..percent',function(name, percent){
+            percent = (percent * 100).toFixed(2) + '%';
+            return name + ' ' + percent;
+        });
     chart.render();
 });
 
@@ -45,9 +84,18 @@ class Index extends Component {
                 {city: '广州', year: '1999', value: 300},
                 {city: '广州', year: '2050', value: 460}
             ],
+
+            data2: [
+                {name: '打单', value: 56.33 },
+                {name: '订单', value: 24.03},
+                {name: '合单', value: 10.38}
+            ],
             forceFit: true,
             width: 400,
-            height: 250
+            height: 250,
+            forceFit2: true,
+            width2: 400,
+            height2: 450
         };
     }
 
@@ -65,6 +113,15 @@ class Index extends Component {
                         width={this.state.width}
                         height={this.state.height}
                         forceFit={this.state.forceFit}
+                    />
+                </section>
+                <section>
+                    <div className="city">订单分类</div>
+                    <Chart2
+                        data={this.state.data2}
+                        width={this.state.width2}
+                        height={this.state.height2}
+                        forceFit={this.state.forceFit2}
                     />
                 </section>
             </div>
