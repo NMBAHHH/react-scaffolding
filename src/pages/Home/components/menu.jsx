@@ -39,7 +39,7 @@ class Index extends Component {
         const { selectedKeys } = this.state;
         return (
             <Menu
-                theme="dark"
+                theme="light"
                 mode="inline"
                 defaultOpenKeys={['/dashboard']}
                 selectedKeys={selectedKeys}

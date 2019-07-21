@@ -59,52 +59,54 @@ class AddGoods extends Component {
     render() {
         const formProps = this.fieldDecorator();
         return (
-            <Form  className="phone-replenishing" style={{ width: 800 }} {...config.BASE_LAYOUT.GROD_COL} onSubmit={this.handleSubmit}>
-                <Form.Item label="商品名称">
-                    {
-                        formProps.goodsName(
-                            <Input style={{ width: selectWidth }} placeholder="请输入商品名称" />
-                        )
-                    }
-                </Form.Item>
-                <Form.Item label="条形码">
-                    {
-                        formProps.barCode(
-                            <Input style={{ width: selectWidth }} placeholder="请输入条形码" />
-                        )
-                    }
-                </Form.Item>
-                <Form.Item label="库存量">
-                    {
-                        formProps.inventory(
-                            <InputNumber style={{ width: selectWidth }} />
-                        )
-                    }
-                </Form.Item>
-                <Form.Item label="商品标签">
-                    {
-                        formProps.goodsLabel(
-                            <Select
-                                allowClear
-                                style={{ width: selectWidth }}
-                                placeholder="请选择下单方式"
-                            >
-                                <Option value={1}>新品</Option>
-                                <Option value={2}>数码</Option>
-                            </Select>
-                        )
-                    }
-                </Form.Item>
-                <Form.Item>
-                    <Button
-                        className="submit"
-                        type="primary"
-                        htmlType="submit"
-                    >
-                        提交
-                    </Button>
-                </Form.Item>
-            </Form>
+            <section className="add-goods">
+                <Form style={{ width: 800 }} {...config.BASE_LAYOUT.GROD_COL} onSubmit={this.handleSubmit}>
+                    <Form.Item label="商品名称">
+                        {
+                            formProps.goodsName(
+                                <Input style={{ width: selectWidth }} placeholder="请输入商品名称" />
+                            )
+                        }
+                    </Form.Item>
+                    <Form.Item label="条形码">
+                        {
+                            formProps.barCode(
+                                <Input style={{ width: selectWidth }} placeholder="请输入条形码" />
+                            )
+                        }
+                    </Form.Item>
+                    <Form.Item label="库存量">
+                        {
+                            formProps.inventory(
+                                <InputNumber style={{ width: selectWidth }} />
+                            )
+                        }
+                    </Form.Item>
+                    <Form.Item label="商品标签">
+                        {
+                            formProps.goodsLabel(
+                                <Select
+                                    allowClear
+                                    style={{ width: selectWidth }}
+                                    placeholder="请选择下单方式"
+                                >
+                                    <Option value={1}>新品</Option>
+                                    <Option value={2}>数码</Option>
+                                </Select>
+                            )
+                        }
+                    </Form.Item>
+                    <Form.Item>
+                        <Button
+                            className="submit"
+                            type="primary"
+                            htmlType="submit"
+                        >
+                            提交
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </section>
         );
     }
 }

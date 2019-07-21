@@ -47,7 +47,7 @@ class Index extends Component {
     render() {
         const { tableData: { listData, isLoading } } = this.state;
         return (
-            <section>
+            <section className="order-list">
                 <OrderListSearch />
                 <OrderTable listData={listData} isLoading={isLoading} />
             </section>

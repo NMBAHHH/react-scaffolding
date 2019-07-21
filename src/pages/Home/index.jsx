@@ -31,12 +31,13 @@ class Index extends Component {
                             height: '100vh',
                             left: 0
                         }}
+                        theme="light"
                     >
                         <div className="logo" />
                         <Menu />
                     </Sider>
                     <Layout>
-                        <Header>
+                        <Header className="header">
                             <LayoutHeader />
                         </Header>
                         <Content className="home-content">
