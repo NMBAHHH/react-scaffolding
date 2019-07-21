@@ -11,7 +11,7 @@ class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedKeys: ['/order/list'],
+            selectedKeys: ['/dashboard'],
             // 当前页面路径
             pathname: ''
         };
@@ -41,25 +41,25 @@ class Index extends Component {
             <Menu
                 theme="dark"
                 mode="inline"
-                defaultOpenKeys={['/order/list']}
+                defaultOpenKeys={['/dashboard']}
                 selectedKeys={selectedKeys}
                 onClick={({ key }) => {
                     this.props.history.push(key);
                     this.setState({ selectedKeys: [key] });
                 }}
             >
+                <Menu.Item key="/dashboard">
+                    <Icon type="home" />
+                    <span>
+                        工作台
+                    </span>
+                </Menu.Item>
                 <Menu.Item key="/order/list">
                     <Icon type="shopping-cart" />
                     <span>
                         订单管理
                     </span>
                 </Menu.Item>
-                {/* <Menu.Item key="/chart">
-                    <Icon type="shopping-cart" />
-                    <span>
-                        订单管理
-                    </span>
-                </Menu.Item> */}
                 <Menu.Item key="/add/goods">
                     <Icon type="shopping" />
                     <span>
