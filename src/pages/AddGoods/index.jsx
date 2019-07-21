@@ -34,7 +34,7 @@ class AddGoods extends Component {
                 rules: [
                     {
                         required: true,
-                        message: '请选择商品名称'
+                        message: '请输入商品名称'
                     }
                 ]
             }),
@@ -43,7 +43,7 @@ class AddGoods extends Component {
                 rules: [
                     {
                         required: true,
-                        message: '请输入充值金额',
+                        message: '请输入条形码',
                         type: 'number'
                     }
                 ]
