@@ -28,7 +28,7 @@ class Index extends Component {
                     <span className="message">消息</span>
                     <Dropdown className="drop-down" overlay={menu}>
                         <div>
-                            <Avatar className="avatar" size={48} icon="user" />
+                            <Avatar className="avatar" size={28} icon="user" />
                             <span className="name">Faker</span>
                         </div>
                     </Dropdown>
