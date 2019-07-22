@@ -64,7 +64,6 @@
         "no-return-assign": 0,
         "no-script-url": 2,
         "no-use-before-define": 2,
-        "camelcase": 1,
         "jsx-quotes": [
             2,
             "prefer-double"
