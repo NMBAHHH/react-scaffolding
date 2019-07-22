@@ -2,14 +2,14 @@ import { fromJS } from 'immutable';
 import { createReducer } from 'redux-immutablejs';
 import {
     GET_TABLE
-} from './../actions/table';
+} from './../actions/orderList';
 
 const initialState = fromJS({
-    tableData: {}
+    orderListData: {}
 });
 
 export default createReducer(initialState, {
     [GET_TABLE]: (state, { payload }) => {
-        return state.set('tableData', payload);
+        return state.set('orderListData', payload);
     }
 });

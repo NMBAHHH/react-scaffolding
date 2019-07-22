@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { message } from 'antd';
 import { withRouter } from 'react-router';
-import * as action from '../../actions/table';
+import * as action from '../../actions/orderList';
 import OrderListSearch from './component/orderListSearch';
 import OrderTable from './component/orderTable';
 import './index.less';
 
 const mapStateToProps = state => {
-    const { table } = state;
+    const { orderList } = state;
     return {
-        table: table.toJS()
+        orderList: orderList.toJS()
     };
 };
 
@@ -22,8 +22,7 @@ class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // 表格数据
-            tableData: []
+            orderListData: []
         };
     }
 
@@ -33,19 +32,19 @@ class Index extends Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        const { table: { tableData } } = props;
-        if (tableData.code == 500) {
-            message.error(tableData.error, 3);
+        const { orderList: { orderListData } } = props;
+        if (orderListData.code == 500) {
+            message.error(orderListData.error, 3);
             return state;
         }
 
         return {
-            tableData
+            orderListData
         };
     }
 
     render() {
-        const { tableData: { listData, isLoading } } = this.state;
+        const { orderListData: { listData, isLoading } } = this.state;
         return (
             <section className="order-list">
                 <OrderListSearch />

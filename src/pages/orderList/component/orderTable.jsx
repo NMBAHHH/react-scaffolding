@@ -7,8 +7,7 @@ import {
 const columns = [
     {
         title: '订单编号',
-        dataIndex: 'orderId',
-        render: text => <a>{text}</a>
+        dataIndex: 'orderId'
     },
     {
         title: '客户名称',

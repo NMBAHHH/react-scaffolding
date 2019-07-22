@@ -1,9 +1,9 @@
 // reducers配置文件
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import table from './table';
+import orderList from './orderList';
 const rootReducers = combineReducers({
-    table,
+    orderList,
     router: routerReducer
 });
 export default rootReducers;
