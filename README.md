@@ -99,6 +99,7 @@ node ^11.4.0
 - Import Cost
 - clear-console
 - Beautify css/sass/scss/less
+- clear-console
 ## vscode 用户自定义配置
 ```
 
