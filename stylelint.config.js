@@ -11,6 +11,7 @@ module.exports = {
         'number-leading-zero': null,
         'unit-whitelist': ['em', 'rem', 's', 'px', 'deg', 'all'],
         'no-eol-whitespace': [true, { 'ignore': 'empty-lines' }],
-        'selector-list-comma-newline-after': 'never-multi-line'
+        'selector-list-comma-newline-after': 'never-multi-line',
+        'declaration-block-trailing-semicolon': 'never'
     }
 };

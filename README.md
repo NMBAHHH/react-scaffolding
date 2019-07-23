@@ -178,50 +178,56 @@ $ npm run build
 # 目录结构
 <pre>
 .
+├── LICENSE
+├── README.md
+├── package-lock.json
+├── package.json
 ├── public
 │   └── index.html
 ├── script                              # webpack
-│   ├── dist
-│   │   ├── 1.02f616b.js
-│   │   ├── 1.css
-│   │   ├── 2.02f616b.js
-│   │   ├── 3.02f616b.js
-│   │   ├── 4.02f616b.js
-│   │   ├── index.html
-│   │   ├── main.02f616b.css
-│   │   ├── main.02f616b.js
-│   │   └── main.02f616b.js.LICENSE
 │   ├── webpack.base.conf.js
 │   ├── webpack.dev.js
 │   └── webpack.prod.js
 ├── src                                 # 主入口
-├── ├── utils                           # 工具类
-│   ├── actions                         # action层
-│   │   └── table.js
-│   ├── components                      # 页面共享组件
+│   ├── actions                         # actions
+│   │   └── orderList.js
+│   ├── components                      # 公共组件层
+│   │   ├── AsyncComponent
+│   │   │   └── index.jsx
 │   │   └── LayoutHeader
 │   │       ├── index.jsx
 │   │       └── index.less
-│   ├── index.jsx                       # 主入口文件js
+│   ├── config.js                       # 基础配置s
+│   ├── index.jsx                       # 入口js
 │   ├── pages                           # 页面层
-│   │   ├── Chart
+│   │   ├── AddGoods
+│   │   │   ├── index.jsx
+│   │   │   └── index.less
+│   │   ├── Dashboard
 │   │   │   ├── index.jsx
 │   │   │   └── index.less
 │   │   ├── Home
-│   │   │   ├── components              # 页面独立的组件层
+│   │   │   ├── components              # 页面独立组件
 │   │   │   │   └── menu.jsx
 │   │   │   ├── index.jsx
 │   │   │   └── index.less
-│   │   └── Table
+│   │   └── orderList
+│   │       ├── component               # 页面独立组件
+│   │       │   ├── orderListSearch.jsx
+│   │       │   └── orderTable.jsx
 │   │       ├── index.jsx
 │   │       └── index.less
-│   ├── reducers                        # reducer层
-│   │   ├── rootReducers.js
-│   │   └── table.js
-│   ├── request.jsx                     # 网络层
+│   ├── reducers                        # reducer    
+│   │   ├── orderList.js
+│   │   └── rootReducers.js
+│   ├── request.jsx                     # 网络请求
 │   ├── routeConfig.jsx                 # 路由层
-│   └── servers                         # 接口层
-│       └── table.js
+│   ├── servers                         # api层
+│   │   └── table.js
+│   └── utils                           # 工具类
+│       └── index.js
+├── .eslintrc                           # js语法检查
+├── stylelint.config.js                 # css语法格式检查
 ├── yarn-error.log
 └── yarn.lock
 </pre>

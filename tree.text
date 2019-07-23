@@ -1,0 +1,55 @@
+.
+├── LICENSE
+├── README.md
+├── package-lock.json
+├── package.json
+├── public
+│   └── index.html
+├── script
+│   ├── webpack.base.conf.js
+│   ├── webpack.dev.js
+│   └── webpack.prod.js
+├── src
+│   ├── actions
+│   │   └── orderList.js
+│   ├── components
+│   │   ├── AsyncComponent
+│   │   │   └── index.jsx
+│   │   └── LayoutHeader
+│   │       ├── index.jsx
+│   │       └── index.less
+│   ├── config.js
+│   ├── index.jsx
+│   ├── pages
+│   │   ├── AddGoods
+│   │   │   ├── index.jsx
+│   │   │   └── index.less
+│   │   ├── Dashboard
+│   │   │   ├── index.jsx
+│   │   │   └── index.less
+│   │   ├── Home
+│   │   │   ├── components
+│   │   │   │   └── menu.jsx
+│   │   │   ├── index.jsx
+│   │   │   └── index.less
+│   │   └── orderList
+│   │       ├── component
+│   │       │   ├── orderListSearch.jsx
+│   │       │   └── orderTable.jsx
+│   │       ├── index.jsx
+│   │       └── index.less
+│   ├── reducers
+│   │   ├── orderList.js
+│   │   └── rootReducers.js
+│   ├── request.jsx
+│   ├── routeConfig.jsx
+│   ├── servers
+│   │   └── table.js
+│   └── utils
+│       └── index.js
+├── stylelint.config.js
+├── tree.text
+├── yarn-error.log
+└── yarn.lock
+
+17 directories, 35 files
