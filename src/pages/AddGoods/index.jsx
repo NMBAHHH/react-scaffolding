@@ -5,7 +5,7 @@ import './index.less';
 
 const { Option } = Select;
 
-const selectWidth = 340;
+const SELECT_WIDTH = 340;
 
 class AddGoods extends Component {
     constructor(props) {
@@ -64,21 +64,21 @@ class AddGoods extends Component {
                     <Form.Item label="商品名称">
                         {
                             formProps.goodsName(
-                                <Input style={{ width: selectWidth }} placeholder="请输入商品名称" />
+                                <Input style={{ width: SELECT_WIDTH }} placeholder="请输入商品名称" />
                             )
                         }
                     </Form.Item>
                     <Form.Item label="条形码">
                         {
                             formProps.barCode(
-                                <Input style={{ width: selectWidth }} placeholder="请输入条形码" />
+                                <Input style={{ width: SELECT_WIDTH }} placeholder="请输入条形码" />
                             )
                         }
                     </Form.Item>
                     <Form.Item label="库存量">
                         {
                             formProps.inventory(
-                                <InputNumber style={{ width: selectWidth }} />
+                                <InputNumber style={{ width: SELECT_WIDTH }} />
                             )
                         }
                     </Form.Item>
@@ -87,7 +87,7 @@ class AddGoods extends Component {
                             formProps.goodsLabel(
                                 <Select
                                     allowClear
-                                    style={{ width: selectWidth }}
+                                    style={{ width: SELECT_WIDTH }}
                                     placeholder="请选择下单方式"
                                 >
                                     <Option value={1}>新品</Option>
