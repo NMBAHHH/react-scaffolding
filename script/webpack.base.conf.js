@@ -1,10 +1,43 @@
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-    resolve: {
-        extensions: ['.js', '.jsx', '.css', '.less']
+    optimization: {
+        minimizer: [
+            // 压缩js
+            new TerserPlugin({
+                test: /(\.jsx|\.js)$/,
+                extractComments: true,
+                parallel: true,
+                cache: true
+            }),
+        ]
     },
+    resolve: {
+        extensions: ['.js', '.jsx', '.css', '.less'],
+        // alias: {
+        //     // 'react': path.resolve(__dirname,'dummyReact.js')
+        //     'react': 'dummyReact.js'
+        // }
+    },
+    // 缓存这些文件
+    vendor: [
+        'react',
+        'react-dom',
+        'redux',
+        'react-router-dom',
+        'react-router-redux',
+        'react-redux',
+        'history',
+        'antd',
+        'dayjs'
+    ],
     module: {
         rules: [
             {
@@ -13,24 +46,24 @@ module.exports = {
                 loader: 'babel-loader'
             },
             {
-                test: /\.less$/,
+                test: /\.css$/,
+                exclude: /node_modules/,
                 use: [
-                    {
-                        loader: 'style-loader'
-                    },
+                    MiniCssExtractPlugin.loader,
+                    'style-loader',
                     {
                         loader: 'css-loader',
                         options: {
-                            importLoaders: 1
+                            importLoaders: 1,
+                            modules: {
+                                localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                            }
                         }
                     },
                     {
-                        loader: 'less-loader',
+                        loader: 'postcss-loader',
                         options: {
-                            modifyVars: {
-                                '@primary-color': '#3080fe'
-                            },
-                            javascriptEnabled: true
+                            plugins: () => [require('autoprefixer')]
                         }
                     }
                 ]
@@ -38,8 +71,44 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader'
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => [require('autoprefixer')]
+                        }
+                    }
+                ],
+                include: /(node_modules)/
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules: {
+                                localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                            }
+                        }
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            paths: [
+                                path.resolve(__dirname, 'node_modules')
+                            ],
+                        },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => [require('autoprefixer')]
+                        }
+                    }
                 ]
             },
             {
@@ -56,9 +125,10 @@ module.exports = {
             }
         ]
     },
-    HtmlWebpackPlugin: [
-        new HtmlWebpackPlugin({
-            title: 'sight',
+    plugins: {
+        // 配置入口页面
+        html: new HtmlWebpackPlugin({
+            title: 'adjustClient',
             template: 'public/index.html',
             removeComments: true,
             collapseWhitespace: true,
@@ -70,8 +140,20 @@ module.exports = {
             minifyJS: true,
             minifyCSS: true,
             minifyURLs: true
-        })
-    ],
+        }),
+        // 每次打包前，先清理dist包
+        cleanWebpack: new CleanWebpackPlugin(['dist']),
+        // 抽取css
+        miniCssExtract: new MiniCssExtractPlugin({
+            filename: '[name].[hash].css',
+            chunkFilename: '[id].css',
+            ignoreOrder: true
+        }),
+        namedModules: new webpack.NamedModulesPlugin(),
+        optimizeCssAssets: new OptimizeCssAssetsPlugin(),
+        // 生成包依赖图
+        bundleAnalyzer: new BundleAnalyzerPlugin({ analyzerPort: 8081 })
+    },
     devServer: {
         hot: false,
         historyApiFallback: true,
@@ -79,6 +161,21 @@ module.exports = {
         compress: true
     },
     externals: {
-        'antd': 'antd'
+        // antd: 'antd',
+        // react: 'react',
+        react: {
+            root: 'react',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react'
+        },
+        // 'react-dom': {
+        //     root: 'ReactDOM',
+        //     commonjs2: 'react-dom',
+        //     commonjs: 'react-dom',
+        //     amd: 'react-dom'
+        // }
+        // 'react-router-dom': 'react-router-dom',
+        // history: 'history'
     }
 };

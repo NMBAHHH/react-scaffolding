@@ -1,38 +1,25 @@
-const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackBase = require('./webpack.base.conf');
 
 module.exports = {
     // 配置源码显示方式
-    devtool: 'source-map',
+    devtool: 'eval-source-map',
     mode: 'development',
-    entry: ['./src/index.jsx', 'whatwg-fetch'],
+    entry: {
+        app: './src/index.jsx',
+        vendor: webpackBase.vendor
+    },
+    output: {
+        libraryTarget: 'umd'
+    },
     resolve: webpackBase.resolve,
     module: webpackBase.module,
+    optimization: webpackBase.optimization,
     plugins: [
-        // 配置入口页面
-        new HtmlWebpackPlugin({
-            title: 'react-scaffolding',
-            template: 'public/index.html',
-            removeComments: true,
-            collapseWhitespace: true,
-            removeRedundantAttributes: true,
-            useShortDoctype: true,
-            removeEmptyAttributes: true,
-            removeStyleLinkTypeAttributes: true,
-            keepClosingSlash: true,
-            minifyJS: true,
-            minifyCSS: true,
-            minifyURLs: true
-        }),
-        new MiniCssExtractPlugin({
-            filename: '[name].css',
-            chunkFilename: '[id].css'
-        }),
-        new webpack.NamedModulesPlugin()
-        // new webpack.HotModuleReplacementPlugin()
+        webpackBase.plugins.html,
+        webpackBase.plugins.miniCssExtract,
+        webpackBase.plugins.namedModules,
+        webpackBase.plugins.optimizeCssAssets
     ],
     devServer: webpackBase.devServer,
-    externals: webpackBase.externals
+    // externals: webpackBase.externals
 };

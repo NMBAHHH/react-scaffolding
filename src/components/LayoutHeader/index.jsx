@@ -20,7 +20,7 @@ class Index extends Component {
 
     render() {
         return (
-            <section className="header">
+            <section className="layout-header">
                 <div className="header-left">
                     订单系统
                 </div>
