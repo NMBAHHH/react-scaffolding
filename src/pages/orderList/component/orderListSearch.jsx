@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Select, Form, Input } from 'antd';
+import * as styles from './orderListSearch.less';
 
 const colWidth = 150;
 const { Option } = Select;
@@ -39,7 +40,7 @@ class orderListSearch extends Component {
     render() {
         const formProps = this.fieldDecorator();
         return (
-            <section className="order-list-search">
+            <section className={styles.orderListSearch}>
                 <article>
                     <Form layout="inline">
                         <Form.Item label="订单编号">
@@ -72,7 +73,7 @@ class orderListSearch extends Component {
                         </Form.Item>
                     </Form>
                 </article>
-                <article className="button">
+                <article className={styles.button}>
                     <Button
                         onClick={this.handleSubmit}
                         type="primary"

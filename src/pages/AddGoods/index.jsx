@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button, Select, Input, InputNumber } from 'antd';
 import config from '../../config';
-import './index.less';
+import * as styles from './index.less';
 
 const { Option } = Select;
 
@@ -59,7 +59,7 @@ class AddGoods extends Component {
     render() {
         const formProps = this.fieldDecorator();
         return (
-            <section className="add-goods">
+            <section className={styles.addGoods}>
                 <Form style={{ width: 800 }} {...config.BASE_LAYOUT.GROD_COL} onSubmit={this.handleSubmit}>
                     <Form.Item label="商品名称">
                         {
@@ -98,7 +98,7 @@ class AddGoods extends Component {
                     </Form.Item>
                     <Form.Item>
                         <Button
-                            className="submit"
+                            className={styles.submit}
                             type="primary"
                             htmlType="submit"
                         >

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import createG2 from 'g2-react';
 import { Stat } from 'g2';
-import './index.less';
+import * as styles from './index.less';
 const Chart = createG2(chart => {
     chart.col('year', {
         type: 'linear',
@@ -105,9 +105,9 @@ class Index extends Component {
 
     render() {
         return (
-            <div className="dashboard">
+            <div className={styles.dashboard}>
                 <section>
-                    <div className="city">各大城市营业额</div>
+                    <div className={styles.city}>各大城市营业额</div>
                     <Chart
                         data={this.state.data}
                         width={this.state.width}
@@ -116,7 +116,7 @@ class Index extends Component {
                     />
                 </section>
                 <section>
-                    <div className="city">订单分类</div>
+                    <div className={styles.city}>订单分类</div>
                     <Chart2
                         data={this.state.data2}
                         width={this.state.width2}

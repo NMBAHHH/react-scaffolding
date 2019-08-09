@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 import * as action from '../../actions/orderList';
 import OrderListSearch from './component/orderListSearch';
 import OrderTable from './component/orderTable';
-import './index.less';
+import * as styles from './index.less';
 
 const mapStateToProps = state => {
     const { orderList } = state;
@@ -46,7 +46,7 @@ class Index extends Component {
     render() {
         const { orderListData: { listData, isLoading } } = this.state;
         return (
-            <section className="order-list">
+            <section className={styles.orderList}>
                 <OrderListSearch />
                 <OrderTable listData={listData} isLoading={isLoading} />
             </section>

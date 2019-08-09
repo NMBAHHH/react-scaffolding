@@ -9,7 +9,7 @@ import { createHashHistory } from 'history';
 import LayoutHeader from '../../components/LayoutHeader/index';
 import Menu from './components/menu';
 import routeConfig from '../../routeConfig';
-import './index.less';
+import * as styles from './index.less';
 
 const { Header, Content, Sider } = Layout;
 
@@ -24,7 +24,7 @@ class Index extends Component {
     render() {
         return (
             <Router history={history}>
-                <Layout className="home-layout">
+                <Layout className={styles.homeLayout}>
                     <Sider
                         style={{
                             overflow: 'auto',
@@ -33,14 +33,14 @@ class Index extends Component {
                         }}
                         theme="light"
                     >
-                        <div className="logo" />
+                        <div className={styles.logo} />
                         <Menu />
                     </Sider>
                     <Layout>
-                        <Header className="header">
+                        <Header className={styles.header}>
                             <LayoutHeader />
                         </Header>
-                        <Content className="home-content">
+                        <Content className={styles.homeContent}>
                             <Suspense fallback={<div>Loading...</div>}>
                                 <Switch>
                                     {routeConfig}
