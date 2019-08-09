@@ -25,6 +25,7 @@ const config = {
         webpackBase.plugins.html,
         webpackBase.plugins.miniCssExtract,
         webpackBase.plugins.optimizeCssAssets,
+        webpackBase.plugins.progressBarPlugin
     ],
     externals: webpackBase.externals
 };

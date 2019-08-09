@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -152,7 +153,9 @@ module.exports = {
         namedModules: new webpack.NamedModulesPlugin(),
         optimizeCssAssets: new OptimizeCssAssetsPlugin(),
         // 生成包依赖图
-        bundleAnalyzer: new BundleAnalyzerPlugin({ analyzerPort: 8081 })
+        bundleAnalyzer: new BundleAnalyzerPlugin({ analyzerPort: 8081 }),
+        // 打包进度
+        progressBarPlugin: new ProgressBarPlugin()
     },
     devServer: {
         hot: false,
