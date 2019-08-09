@@ -166,6 +166,8 @@ module.exports = {
     externals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-        redux: 'Redux'
+        redux: 'Redux',
+        g2: 'G2',
+        'g2-react': 'G2'
     }
 };
