@@ -26,7 +26,7 @@ module.exports = {
         //     'react': 'dummyReact.js'
         // }
     },
-    // 缓存这些文件
+    // 缓存文件
     vendor: [
         'react',
         'react-dom',
@@ -157,25 +157,47 @@ module.exports = {
     devServer: {
         hot: false,
         historyApiFallback: true,
-        // contentBase: path.resolve(__dirname,'src/index.js'),
+        contentBase: './',
         compress: true
     },
     externals: {
-        // antd: 'antd',
-        // react: 'react',
         react: {
-            root: 'react',
-            commonjs2: 'react',
-            commonjs: 'react',
-            amd: 'react'
+            root: 'React',
+            commonjs2: 'React',
+            commonjs: 'React',
+            amd: 'React'
         },
-        // 'react-dom': {
-        //     root: 'ReactDOM',
-        //     commonjs2: 'react-dom',
-        //     commonjs: 'react-dom',
-        //     amd: 'react-dom'
-        // }
-        // 'react-router-dom': 'react-router-dom',
-        // history: 'history'
+        redux: {
+            root: 'redux',
+            commonjs2: 'redux',
+            commonjs: 'redux',
+            amd: 'redux'
+        },
+        'react-router-dom': {
+            root: 'ReactRouterDom',
+            commonjs2: 'ReactRouterDom',
+            commonjs: 'ReactRouterDom',
+            amd: 'ReactRouterDom'
+        },
+        'react-router-redux': {
+            root: 'ReactRouterRedux',
+            commonjs2: 'ReactRouterRedux',
+            commonjs: 'ReactRouterRedux',
+            amd: 'ReactRouterRedux'
+        },
+        'react-redux': {
+            root: 'ReactRedux',
+            commonjs2: 'ReactRedux',
+            commonjs: 'ReactRedux',
+            amd: 'ReactRedux'
+        },
+        'react-dom': {
+            root: 'ReactDOM',
+            commonjs2: 'ReactDOM',
+            commonjs: 'ReactDOM',
+            amd: 'ReactDOM'
+        },
+        history: 'history',
+        dayjs: 'dayjs'
     }
 };
