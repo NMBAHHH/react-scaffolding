@@ -23,5 +23,5 @@ module.exports = {
         webpackBase.plugins.miniCssExtract,
         webpackBase.plugins.optimizeCssAssets,
     ],
-    // externals: webpackBase.externals
+    externals: webpackBase.externals
 };

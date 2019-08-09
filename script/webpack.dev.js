@@ -17,5 +17,5 @@ module.exports = {
         webpackBase.plugins.optimizeCssAssets,
     ],
     devServer: webpackBase.devServer,
-    // externals: webpackBase.externals
+    externals: webpackBase.externals
 };

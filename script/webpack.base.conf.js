@@ -161,43 +161,8 @@ module.exports = {
         compress: true
     },
     externals: {
-        react: {
-            root: 'React',
-            commonjs2: 'React',
-            commonjs: 'React',
-            amd: 'React'
-        },
-        redux: {
-            root: 'redux',
-            commonjs2: 'redux',
-            commonjs: 'redux',
-            amd: 'redux'
-        },
-        'react-router-dom': {
-            root: 'ReactRouterDom',
-            commonjs2: 'ReactRouterDom',
-            commonjs: 'ReactRouterDom',
-            amd: 'ReactRouterDom'
-        },
-        'react-router-redux': {
-            root: 'ReactRouterRedux',
-            commonjs2: 'ReactRouterRedux',
-            commonjs: 'ReactRouterRedux',
-            amd: 'ReactRouterRedux'
-        },
-        'react-redux': {
-            root: 'ReactRedux',
-            commonjs2: 'ReactRedux',
-            commonjs: 'ReactRedux',
-            amd: 'ReactRedux'
-        },
-        'react-dom': {
-            root: 'ReactDOM',
-            commonjs2: 'ReactDOM',
-            commonjs: 'ReactDOM',
-            amd: 'ReactDOM'
-        },
-        history: 'history',
-        dayjs: 'dayjs'
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        redux: 'Redux'
     }
 };
