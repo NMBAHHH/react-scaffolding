@@ -1,7 +1,10 @@
 const path = require('path');
 const webpackBase = require('./webpack.base.conf');
 
-module.exports = {
+const SpeedMeasureWebpackPlugin = require('speed-measure-webpack-plugin');
+const smp = new SpeedMeasureWebpackPlugin();
+
+const config = {
     // 配置源码显示方式
     mode: 'production',
     entry: {
@@ -25,3 +28,5 @@ module.exports = {
     ],
     externals: webpackBase.externals
 };
+
+module.exports = smp.wrap(config);
