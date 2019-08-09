@@ -13,8 +13,6 @@ module.exports = {
         hashDigestLength: 7,
         path: path.resolve(__dirname, 'dist'),
         publicPath: './',
-        // libraryTarget: 'commonjs',
-        library: ''
     },
     resolve: webpackBase.resolve,
     module: webpackBase.module,

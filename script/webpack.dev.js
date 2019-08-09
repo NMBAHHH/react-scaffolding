@@ -7,11 +7,6 @@ module.exports = {
     mode: 'development',
     entry: {
         app: ['./src/index.jsx'],
-        // vendor: webpackBase.vendor
-    },
-    output: {
-        // libraryTarget: 'commonjs',
-        library: ''
     },
     resolve: webpackBase.resolve,
     module: webpackBase.module,
@@ -19,7 +14,7 @@ module.exports = {
     plugins: [
         webpackBase.plugins.html,
         webpackBase.plugins.miniCssExtract,
-        webpackBase.plugins.optimizeCssAssets
+        webpackBase.plugins.optimizeCssAssets,
     ],
     devServer: webpackBase.devServer,
     // externals: webpackBase.externals
