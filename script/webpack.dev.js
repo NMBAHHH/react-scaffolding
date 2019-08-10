@@ -16,6 +16,6 @@ module.exports = {
         webpackBase.plugins.miniCssExtract,
         webpackBase.plugins.optimizeCssAssets,
     ],
-    devServer: webpackBase.devServer,
+    // devServer: webpackBase.devServer,
     externals: webpackBase.externals
 };

@@ -164,10 +164,13 @@ module.exports = {
         compress: true
     },
     externals: {
+        antd: 'antd',
         react: 'React',
         'react-dom': 'ReactDOM',
         redux: 'Redux',
         g2: 'G2',
-        'g2-react': 'G2'
+        'g2-react': 'G2',
+        'immutable': 'Immutable',
+        'moment': 'moment',
     }
 };
