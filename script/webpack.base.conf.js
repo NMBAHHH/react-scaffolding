@@ -17,28 +17,24 @@ module.exports = {
                 extractComments: true,
                 parallel: true,
                 cache: true
-            }),
-        ]
+            })
+        ],
+        splitChunks: {
+            cacheGroups: {
+                vendors: {
+                    //node_modules里的代码
+                    test:/[\\/]node_modules[\\/]/,
+                    chunks: 'initial',
+                    name:'vendors', //chunks name
+                    priority:10, //优先级
+                    enforce:true
+                }
+            }
+        }
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.css', '.less'],
-        // alias: {
-        //     // 'react': path.resolve(__dirname,'dummyReact.js')
-        //     'react': 'dummyReact.js'
-        // }
+        extensions: ['.js', '.jsx', '.css', '.less', '.json']
     },
-    // 缓存文件
-    vendor: [
-        'react',
-        'react-dom',
-        'redux',
-        'react-router-dom',
-        'react-router-redux',
-        'react-redux',
-        'history',
-        'antd',
-        'dayjs'
-    ],
     module: {
         rules: [
             {
@@ -51,7 +47,6 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'style-loader',
                     {
                         loader: 'css-loader',
                         options: {
@@ -67,12 +62,13 @@ module.exports = {
                             plugins: () => [require('autoprefixer')]
                         }
                     }
+                    // 'style-loader',
                 ]
             },
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     {
                         loader: 'postcss-loader',
@@ -80,13 +76,14 @@ module.exports = {
                             plugins: () => [require('autoprefixer')]
                         }
                     }
+                    // 'style-loader'
                 ],
                 include: /(node_modules)/
             },
             {
                 test: /\.less$/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
@@ -96,13 +93,14 @@ module.exports = {
                             }
                         }
                     },
+                    // 'style-loader',
                     {
                         loader: 'less-loader',
                         options: {
                             paths: [
                                 path.resolve(__dirname, 'node_modules')
-                            ],
-                        },
+                            ]
+                        }
                     },
                     {
                         loader: 'postcss-loader',
@@ -129,7 +127,7 @@ module.exports = {
     plugins: {
         // 配置入口页面
         html: new HtmlWebpackPlugin({
-            title: 'adjustClient',
+            title: 'react-scaffolding',
             template: 'public/index.html',
             removeComments: true,
             collapseWhitespace: true,
@@ -142,15 +140,16 @@ module.exports = {
             minifyCSS: true,
             minifyURLs: true
         }),
-        // 每次打包前，先清理dist包
+        // 清理dist包
         cleanWebpack: new CleanWebpackPlugin(['dist']),
         // 抽取css
         miniCssExtract: new MiniCssExtractPlugin({
-            filename: '[name].[hash].css',
-            chunkFilename: '[id].css',
-            ignoreOrder: true
+            filename: 'css/[name].[hash].css',
+            chunkFilename: 'css/[name].[hash].css',
+            ignoreOrder: false
         }),
         namedModules: new webpack.NamedModulesPlugin(),
+        // 压缩css
         optimizeCssAssets: new OptimizeCssAssetsPlugin(),
         // 生成包依赖图
         bundleAnalyzer: new BundleAnalyzerPlugin({ analyzerPort: 8081 }),
@@ -163,14 +162,14 @@ module.exports = {
         contentBase: './',
         compress: true
     },
+    // 抽离第三方库
     externals: {
-        antd: 'antd',
         react: 'React',
         'react-dom': 'ReactDOM',
         redux: 'Redux',
         g2: 'G2',
         'g2-react': 'G2',
         'immutable': 'Immutable',
-        'moment': 'moment',
+        'moment': 'moment'
     }
 };
