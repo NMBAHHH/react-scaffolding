@@ -17,13 +17,13 @@ class Index extends Component {
     }
 
     chart1() {
+        // eslint-disable-next-line no-undef
         const Chart = new G2.Chart({
             container: 'c1',
             width: 600,
             height: 300,
             forceFit: true
         });
-        
         const data = [
             {city: '北京', year: '1750', value: 502},
             {city: '北京', year: '1800', value: 635},
@@ -55,11 +55,6 @@ class Index extends Component {
             {city: '广州', year: '2050', value: 460}
         ];
         Chart.source(data);
-        // Chart.col('year', {
-        //     type: 'linear',
-        //     tickInterval: 100,
-        //     alias: '年份'
-        // });
         Chart.areaStack().position('year*value').color('city');
         Chart.render();
     }

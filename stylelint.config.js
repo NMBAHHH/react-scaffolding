@@ -17,5 +17,6 @@ module.exports = {
         'selector-pseudo-class-no-unknown': [ true, {
             ignorePseudoClasses: ['global']
         }]
-    }
+    },
+    'ignoreFiles': ['node_modules/**']
 };
