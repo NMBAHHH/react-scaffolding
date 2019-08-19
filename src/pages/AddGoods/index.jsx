@@ -78,7 +78,7 @@ class AddGoods extends Component {
                     <Form.Item label="库存量">
                         {
                             formProps.inventory(
-                                <InputNumber style={{ width: SELECT_WIDTH }} />
+                                <InputNumber style={{ width: SELECT_WIDTH }} placeholder="请输入库存量" />
                             )
                         }
                     </Form.Item>
