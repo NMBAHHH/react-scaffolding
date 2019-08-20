@@ -1,5 +1,6 @@
 module.exports = {
     'extends': 'stylelint-config-standard',
+    'ignoreFiles': ['**/*.js', '**/*.jsx'],
     'rules': {
         'at-rule-no-unknown': [ true, {
             'ignoreAtRules': [
@@ -17,6 +18,5 @@ module.exports = {
         'selector-pseudo-class-no-unknown': [ true, {
             ignorePseudoClasses: ['global']
         }]
-    },
-    'ignoreFiles': ['node_modules/**']
+    }
 };
