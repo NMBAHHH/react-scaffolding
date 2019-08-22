@@ -6,14 +6,13 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const path = require('path');
 
 module.exports = {
     optimization: {
         minimizer: [
             // 压缩js
             new TerserPlugin({
-                test: /(\.jsx|\.js)$/,
+                test: /\.(jsx|js)$/,
                 extractComments: true,
                 parallel: true,
                 cache: true
@@ -38,12 +37,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js|jsx$/,
+                test: /\.(js|jsx)$/,
                 exclude: /(node_modules)/,
                 loader: 'babel-loader'
             },
             {
-                test: /\.css$/,
+                test: /\.(css|less)$/,
                 exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -61,51 +60,28 @@ module.exports = {
                         options: {
                             plugins: () => [require('autoprefixer')]
                         }
-                    }
-                    // 'style-loader',
+                    },
+                    'less-loader'
                 ]
             },
             {
-                test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: () => [require('autoprefixer')]
-                        }
-                    }
-                    // 'style-loader'
-                ],
-                include: /(node_modules)/
-            },
-            {
                 test: /\.less$/,
+                include: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
-                            importLoaders: 1,
-                            modules: {
-                                localIdentName: '[path][name]__[local]--[hash:base64:5]'
-                            }
+                            importLoaders: 1
                         }
                     },
-                    // 'style-loader',
                     {
                         loader: 'less-loader',
                         options: {
-                            paths: [
-                                path.resolve(__dirname, 'node_modules')
-                            ]
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: () => [require('autoprefixer')]
+                            modifyVars: {
+                                'primary-color': 'red'
+                            },
+                            javascriptEnabled: true
                         }
                     }
                 ]
@@ -127,7 +103,7 @@ module.exports = {
     plugins: {
         // 配置入口页面
         html: new HtmlWebpackPlugin({
-            title: 'react-scaffolding',
+            title: 'adjustClient',
             template: 'public/index.html',
             removeComments: true,
             collapseWhitespace: true,
@@ -144,8 +120,8 @@ module.exports = {
         cleanWebpack: new CleanWebpackPlugin(['dist']),
         // 抽取css
         miniCssExtract: new MiniCssExtractPlugin({
-            filename: 'css/[name].[hash].css',
-            chunkFilename: 'css/[name].[hash].css',
+            filename: '[name].[hash].css',
+            chunkFilename: '[id].css',
             ignoreOrder: false
         }),
         namedModules: new webpack.NamedModulesPlugin(),
@@ -154,7 +130,12 @@ module.exports = {
         // 生成包依赖图
         bundleAnalyzer: new BundleAnalyzerPlugin({ analyzerPort: 8081 }),
         // 打包进度
-        progressBarPlugin: new ProgressBarPlugin()
+        progressBarPlugin: new ProgressBarPlugin(),
+        // 加载中文包
+        ContextReplacementPlugin: new webpack.ContextReplacementPlugin(
+            /moment\/locale$/,
+            /zh-cn/
+        )
     },
     devServer: {
         hot: false,
@@ -162,7 +143,7 @@ module.exports = {
         contentBase: './',
         compress: true
     },
-    // 抽离第三方库
+    // externals 排除对应的包，注：排除掉的包必须要用script标签引入下
     externals: {
         react: 'React',
         'react-dom': 'ReactDOM',
@@ -170,6 +151,7 @@ module.exports = {
         g2: 'G2',
         'g2-react': 'G2',
         'immutable': 'Immutable',
-        'moment': 'moment'
+        'moment': 'moment',
+        '../moment': 'moment'
     }
 };
