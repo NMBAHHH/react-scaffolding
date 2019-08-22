@@ -6,13 +6,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const path = require('path');
 
 module.exports = {
     optimization: {
         minimizer: [
             // 压缩js
             new TerserPlugin({
-                test: /\.(jsx|js)$/,
+                test: /(\.jsx|\.js)$/,
                 extractComments: true,
                 parallel: true,
                 cache: true
@@ -37,12 +38,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.js|jsx$/,
                 exclude: /(node_modules)/,
                 loader: 'babel-loader'
             },
             {
-                test: /\.(css|less)$/,
+                test: /\.css$/,
                 exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -60,28 +61,51 @@ module.exports = {
                         options: {
                             plugins: () => [require('autoprefixer')]
                         }
-                    },
-                    'less-loader'
+                    }
+                    // 'style-loader',
                 ]
             },
             {
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => [require('autoprefixer')]
+                        }
+                    }
+                    // 'style-loader'
+                ],
+                include: /(node_modules)/
+            },
+            {
                 test: /\.less$/,
-                include: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
-                            importLoaders: 1
+                            importLoaders: 1,
+                            modules: {
+                                localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                            }
                         }
                     },
+                    // 'style-loader',
                     {
                         loader: 'less-loader',
                         options: {
-                            modifyVars: {
-                                'primary-color': 'red'
-                            },
-                            javascriptEnabled: true
+                            paths: [
+                                path.resolve(__dirname, 'node_modules')
+                            ]
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => [require('autoprefixer')]
                         }
                     }
                 ]
@@ -130,12 +154,7 @@ module.exports = {
         // 生成包依赖图
         bundleAnalyzer: new BundleAnalyzerPlugin({ analyzerPort: 8081 }),
         // 打包进度
-        progressBarPlugin: new ProgressBarPlugin(),
-        // 加载中文包
-        ContextReplacementPlugin: new webpack.ContextReplacementPlugin(
-            /moment\/locale$/,
-            /zh-cn/
-        )
+        progressBarPlugin: new ProgressBarPlugin()
     },
     devServer: {
         hot: false,
@@ -151,7 +170,6 @@ module.exports = {
         g2: 'G2',
         'g2-react': 'G2',
         'immutable': 'Immutable',
-        'moment': 'moment',
-        '../moment': 'moment'
+        'moment': 'moment'
     }
 };
