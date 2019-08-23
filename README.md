@@ -232,6 +232,3 @@ $ npm run build
 ├── yarn-error.log
 └── yarn.lock
 </pre>
-
-# 未完待续
-引入ts
