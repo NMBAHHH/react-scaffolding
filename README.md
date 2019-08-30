@@ -73,6 +73,17 @@ static getDerivedStateFromProps(props, state) {
     return state;
 }
 ```
+5. 简单实现combineReducers，监听当前正在触发的action
+``
+const combineReducers = (reducers) => {
+    return (state = {}, action) => {
+        return Object.keys(reducers).reduce((nextState, key) => {
+            nextState[key] = reducers[key](state[key], action);
+            return nextState;
+        }, { actionType: action.type });
+    };
+};
+```
 
 # 环境
 ```
