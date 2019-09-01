@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Form, Button, Select, Input, InputNumber } from 'antd';
+import { Form, Button, Select, Input, InputNumber, DatePicker } from 'antd';
 import config from '../../config';
 import * as styles from './index.less';
+
+const { RangePicker } = DatePicker;
 
 const { Option } = Select;
 
@@ -51,7 +53,9 @@ class AddGoods extends Component {
             // 条形码
             inventory: form.getFieldDecorator('inventory'),
             // 商品标签
-            goodsLabel: form.getFieldDecorator('goodsLabel')
+            goodsLabel: form.getFieldDecorator('goodsLabel'),
+            // 创建时间
+            createTime: form.getFieldDecorator('createTime'),
         };
         return formProps;
     }
@@ -93,6 +97,15 @@ class AddGoods extends Component {
                                     <Option value={1}>新品</Option>
                                     <Option value={2}>数码</Option>
                                 </Select>
+                            )
+                        }
+                    </Form.Item>
+                    <Form.Item label="创建时间">
+                        {
+                            formProps.createTime(
+                                <RangePicker
+                                    style={{ width: SELECT_WIDTH }}
+                                />
                             )
                         }
                     </Form.Item>

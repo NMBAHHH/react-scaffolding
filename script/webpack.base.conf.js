@@ -151,8 +151,8 @@ module.exports = {
         g2: 'G2',
         'g2-react': 'G2',
         'immutable': 'Immutable',
-        'moment': 'moment',
-        '../moment': 'moment',
+        // 'moment': 'moment',
+        // '../moment': 'moment',
         'socket.io-client': 'io'
     }
 };
