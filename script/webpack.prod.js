@@ -12,7 +12,7 @@ const config = {
         app: ['./src/index.jsx']
     },
     output: {
-        filename: '[name].[hash].js',
+        filename: './js/[name].[hash].js',
         hashDigestLength: 7,
         path: path.resolve(__dirname, 'dist'),
         publicPath: './'
