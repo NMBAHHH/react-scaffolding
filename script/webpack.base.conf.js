@@ -88,15 +88,15 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif|jpeg)$/,
-                loader: 'file-loader',
-                options: {
-                    outputPath: './images',
-                    publicPath: '../images/'
-                }
+                use: [
+                    'file-loader'
+                ]
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
-                loader: 'file-loader'
+                use: [
+                    'file-loader'
+                ]
             }
         ]
     },
@@ -120,8 +120,8 @@ module.exports = {
         cleanWebpack: new CleanWebpackPlugin(['dist']),
         // 抽取css
         miniCssExtract: new MiniCssExtractPlugin({
-            filename: './css/[name].[hash].css',
-            chunkFilename: './css/[id].css',
+            filename: '[name].[hash].css',
+            chunkFilename: '[id].css',
             ignoreOrder: false
         }),
         namedModules: new webpack.NamedModulesPlugin(),
