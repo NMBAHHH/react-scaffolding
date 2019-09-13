@@ -10,12 +10,11 @@ export function getObjReducer(state, payload, target) {
 // 根据当前域名，获取不同的环境
 export function getApi() {
     let getApi = '';
-    if (location.hostname === 'localhost') {
+    if(process.env.NODE_ENV == 'development') {
         // 本地环境
         getApi = '//localhost:9000/api/v1/';
-    }
-    if (location.hostname === 'order.downfuture.com') {
-        // 正式环境
+    } else {
+        // 生产环境
         getApi = '//downfuture.com:9000/api/v1/';
     }
     return getApi;
