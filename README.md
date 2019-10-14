@@ -84,6 +84,34 @@ const combineReducers = (reducers) => {
     };
 };
 ```
+6. 按照16.8生命周期组件写法，完成对数据的判断
+```
+componentDidUpdate() {
+    const { orderList, actionType } = this.props;
+    const { orderListData } = orderList;
+    // 获取表格信息成功
+    if(!isEmpty(orderListData) && orderListData.code == 200 && actionType == 'getTable') {
+        this.setState({
+            orderListData
+        });
+    }
+
+    // 获取表格信息失败
+    if(!isEmpty(orderListData) && orderListData.code && orderListData.code != 200 && actionType == 'getTable') {
+        message.error('获取表格信息失败');
+    }
+
+    this.props.actionType = '';
+}
+
+shouldComponentUpdate(nextProps, nextState) {
+    // 浅层对比
+    if(JSON.stringify(nextProps) == JSON.stringify(this.props) && JSON.stringify(nextState) == JSON.stringify(this.state)) {
+        return false;
+    }
+    return true;
+}
+```
 
 # 环境
 ```

@@ -12,10 +12,6 @@ class Index extends Component {
         this.chart1();
     }
 
-    componentDidUpdate() {
-        this.chart1();
-    }
-
     chart1() {
         // eslint-disable-next-line no-undef
         const Chart = new G2.Chart({

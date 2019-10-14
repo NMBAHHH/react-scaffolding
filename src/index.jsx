@@ -17,18 +17,15 @@ window.socket = io(process.env.NODE_ENV === 'production' ? 'https://downfuture.c
 
 function middleware({ dispatch }) {
     return next => action => {
-        if(!action.isLoading) {
-            return next(action);
-        }
         if(isPromise(action.payload)) {
-            if(action.isLoading) {
-                dispatch({ ...action, payload: { isLoading: action.isLoading } });
-            }
+            dispatch({ ...action, payload: { isLoading: true } });
             return action.payload
                 .then(result => {
+                    result.isLoading = false;
                     dispatch({ ...action, payload: result});
                 })
                 .catch(error => {
+                    error.isLoading = false;
                     dispatch({ ...action, payload: error, error: true});
                 });
         }
