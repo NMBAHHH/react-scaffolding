@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Select, Input, InputNumber, DatePicker } from 'antd';
-import config from '../../config';
+import { BASE_LAYOUT } from '../../config';
 import * as styles from './index.less';
 
 const { RangePicker } = DatePicker;
@@ -64,7 +64,7 @@ class AddGoods extends Component {
         const formProps = this.fieldDecorator();
         return (
             <section className={styles.addGoods}>
-                <Form style={{ width: 800 }} {...config.BASE_LAYOUT.GROD_COL} onSubmit={this.handleSubmit}>
+                <Form style={{ width: 800 }} {...BASE_LAYOUT.GROD_COL} onSubmit={this.handleSubmit}>
                     <Form.Item label="商品名称">
                         {
                             formProps.goodsName(
