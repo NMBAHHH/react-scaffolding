@@ -1,3 +1,5 @@
+import { BASE_API } from '../config';
+
 // 合并特定的reducer
 export function getObjReducer(state, payload, target) {
     if (!state && !payload) {
@@ -9,15 +11,7 @@ export function getObjReducer(state, payload, target) {
 
 // 根据当前域名，获取不同的环境
 export function getApi() {
-    let getApi = '';
-    if(process.env.NODE_ENV == 'development') {
-        // 本地环境
-        getApi = '//localhost:9000/api/v1/';
-    } else {
-        // 生产环境
-        getApi = '//downfuture.com:9000/api/v1/';
-    }
-    return getApi;
+    return BASE_API;
 }
 
 // 检查 value 是不是函数
