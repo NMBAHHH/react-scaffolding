@@ -14,11 +14,11 @@ export const BASE_LAYOUT = {
 };
 
 // 请求域名
-export const BASE_API = '//downfuture.com:9000/api/v1/';
+export const BASE_API = 'https://downfuture.com:9000/api/v1/';
 
 // export const BASE_API = '//localhost:9000/api/v1/';
 
 // socket url
-export const SOCKET_URL = 'http://localhost:9000';
+// export const SOCKET_URL = 'http://localhost:9000';
 
-// export const SOCKET_URL = 'http://downfuture.com:9000';
+export const SOCKET_URL = 'http://downfuture.com:9000';

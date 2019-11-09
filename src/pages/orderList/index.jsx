@@ -17,7 +17,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    getTable: (...args) => dispatch(action.getTable(...args))
+    getTable: (...args) => dispatch(action.getTable(...args)),
+    getTableTest: (...args) => dispatch(action.getTableTest(...args))
 });
 
 class Index extends Component {
@@ -31,8 +32,9 @@ class Index extends Component {
     }
 
     componentDidMount() {
-        const { getTable } = this.props;
+        const { getTable, getTableTest } = this.props;
         getTable();
+        getTableTest(123);
     }
 
     componentDidUpdate() {

@@ -8,3 +8,12 @@ export function getTable(params) {
         payload: api.getTable(params)
     };
 }
+
+// 获取表格数据
+export const GET_TABLE_TEST = 'getTableTest';
+export function getTableTest(params) {
+    return {
+        type: GET_TABLE_TEST,
+        params
+    };
+}
